@@ -1,0 +1,134 @@
+.ibm__navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 2rem;
+}
+
+.ibm__navbar-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ibm__navbar-links_logo {
+    margin-right: 2rem;
+}
+
+.ibm__navbar-links_logo img {
+    width: 62.56px;
+    height: 16.02px;
+}
+
+.ibm__navbar-links_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.ibm__navbar-sign {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.ibm__navbar-links_container p,
+.ibm__navbar-sign p,
+.ibm__navbar-menu_container p {
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: capitalize;
+
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.ibm__navbar-sign button,
+.ibm__navbar-menu_container button {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: #1F70C1;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ibm__navbar-menu {
+    margin-left: 1rem;
+
+    display: none;
+    position: relative;
+}
+
+.ibm__navbar-menu svg {
+    cursor: pointer;
+}
+
+.ibm__navbar-menu_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    
+    text-align: start;
+    background: #333333;
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    margin-top: 1rem;
+    min-width: 210px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0, 0,0.2);
+}
+
+.ibm__navbar-menu_container p {
+    margin: 1rem 0;
+}
+
+.ibm__navbar-menu_container-links-sign {
+    display: none;
+}
+
+@media screen and (max-width: 1050px) {
+    .ibm__navbar-links_container {
+        display: none;
+    }
+
+    .ibm__navbar-menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .ibm__navbar {
+        padding: 2rem 4rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .ibm__navbar {
+        padding: 2rem;
+    }
+
+    .ibm__navbar-sign {
+        display: none;
+    }
+
+    .ibm__navbar-menu_container {
+        top: 20px;
+    }
+
+    .ibm__navbar-menu_container-links-sign {
+        display: block;
+    }
+}
