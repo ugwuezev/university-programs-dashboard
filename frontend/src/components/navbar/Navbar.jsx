@@ -14,10 +14,12 @@ const Navbar = () => {
           <img src={logo} alt="logo" />
         </div>
         <div className="ibm__navbar-links_container">
-          <p><a href="/">Home</a></p>
-          <p><a href="/twitterfeed">Twitter Feed</a></p>
-          <p><a href="/heatmap">Statistics</a></p>
-          <p><a href="/keywords">Settings</a></p>
+            <p><a href="/">Home</a></p>
+            <p><a href="/wordcloud">Word Cloud</a></p>
+            <p><a href="/heatmap">Heat Map</a></p>
+            <p><a href="/barcharts">Bar Charts</a></p>
+            <p><a href="/keywords">Keywords</a></p>
+            <p><a href="/universities">Universities</a></p>
         </div>
       </div>
       <div className="ibm__navbar-sign">
@@ -33,9 +35,11 @@ const Navbar = () => {
         <div className="ibm__navbar-menu_container scale-up-center">
           <div className="ibm__navbar-menu_container-links">
             <p><a href="/">Home</a></p>
-            <p><a href="/twitterfeed">Twitter Feed</a></p>
-            <p><a href="/heatmap">Statistics</a></p>
-            <p><a href="/keywords">Settings</a></p>
+            <p><a href="/wordcloud">Word Cloud</a></p>
+            <p><a href="/heatmap">Heat Map</a></p>
+            <p><a href="/barcharts">Bar Charts</a></p>
+            <p><a href="/keywords">Keywords</a></p>
+            <p><a href="/universities">Universities</a></p>
           </div>
           <div className="ibm__navbar-menu_container-links-sign">
             <Link to={'/signin'}>

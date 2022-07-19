@@ -1,6 +1,6 @@
 import React from 'react';
 import './heatmap.css';
-import { Navbar } from '../../components';
+import { Navbar, Footer} from '../../components';
     
 const HeatMap = () => {
   return (
@@ -10,9 +10,11 @@ const HeatMap = () => {
         <Navbar />
       </div>
 
-      <div>
-        <h2>This is the heatmap page.</h2>
+      <div  className="header">
+        <h1>Heatmap of IBM Universities in the UK</h1>
       </div>
+
+      <Footer />
   </div>
   )
 }

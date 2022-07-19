@@ -1,34 +1,37 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import './test.css';
+import { Navbar, Footer } from '../../components';
+import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 
 const Test = () => {
+  useEffect(() => {
+    document.title = "Matching Tweets";
+  }, []);
 
-let navigate = useNavigate();
+  return (
+    <Container
+        fullWidth
+    >
+        <Box 
+        className="gradient__bg"
+        display="flex"
+        flexDirection="row"
+        justifyContent="center"
+        margin
+        >
+            <Navbar />
+        </Box>
 
-    return (
-        <div>
-            <div>
-                <Button onClick={() => { navigate("/signin"); }} >
-                    Texting
-                </Button>
-            </div>
+        <Box p={1} m={1}>
+           <h1> Matching Tweets</h1>
+        </Box>
 
-            <div>
-                <Link to={'/'}>
-                    <Button
-                        type="submit" 
-                        variant="contained" 
-                    >
-                        Sign In
-                    </Button>
-                 </Link>
-            </div>
-
-        </div>
-
-    );
+        <Footer />
+    </Container>
+    
+    
+  );
 }
 
 export default Test;

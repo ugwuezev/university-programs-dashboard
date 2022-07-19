@@ -5,16 +5,16 @@ import { Navbar, Footer} from '../../components';
 const BarCharts = () => {
   return (
     <div className="BarCharts">
-    <div>
-      <Navbar />
+      <div className="gradient__bg">
+        <Navbar />
+      </div>
+      <div  className="header">
+        <h1>Bar Charts Showing Keywords</h1>
+      </div>
+      
+        <Footer />
+
     </div>
-    <div>
-      BarCharts
-    </div>
-    <div>
-      <Footer />
-    </div>
-  </div>
   )
 }
 

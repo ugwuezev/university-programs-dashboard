@@ -1,13 +1,80 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
-    text-align: center;
-  }
-  
-body {
-    background: var(--color-bg_);
-  }
+.header {
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
 
+.search_bar {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-gap: 8px;
+}
+
+.search_bar_item {
+  margin-bottom: 20px;
+  /* display: grid; */
   
+}
+
+/* Container for dividing the tweets sand filter sections */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8 px;
+
+}
+
+.grid_item {
+  text-align: center;
+  padding: 25px;
+  display: grid;
+}
+
+.grid_item_filter {
+  text-align: center;
+  padding: 25px;
+  display: grid;
+  flex-direction: column;
+}
+
+.grid_item_tweet{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8 px;
+  text-align: center;
+  padding: 25px;
+  margin: 5px;
+  justify-content: baseline;
+  
+}
+
+.grid_item_tweet_image {
+  margin-left: 5px;
+  width: 50px;
+}
+
+.grid_item_tweet_content {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.grid_item_tweet_header {
+  justify-content: space-between;
+  text-align: left;
+  margin-left: 0px;
+}
+
+.grid_item_tweet_header > span {
+  justify-content: space-between;
+  text-align: center;
+}
+
+.grid_item_tweet_body {
+  margin-right: 20px;
+}
+
+
+
+
