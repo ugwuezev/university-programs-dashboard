@@ -45,7 +45,7 @@ router.get("/universities", (req, res) => {
       );
     };
   
-    q ? res.json(search(University).slice(0, 25)) : res.json(University.slice(0, 25));
+    q ? res.json(search(University).slice(0, 35)) : res.json(University.slice(0, 25));
   });
 
 

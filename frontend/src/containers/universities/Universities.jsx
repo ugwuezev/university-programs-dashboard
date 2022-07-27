@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './universities.css';
-import { Navbar, MyButton, Footer, SearchFunction, Table, SearchInput } from '../../components';
+import { Navbar, MyButton, Footer, SearchFunction, MyTable, SearchInput } from '../../components';
 
 const Universities = () => {
 
@@ -38,7 +38,7 @@ const Universities = () => {
       </div>
 
       <div className="u_content">
-      <Table data={data} title="UNIVERSITY" />
+      <MyTable data={data} title="UNIVERSITY" />
       </div>
       
       <div className="u_footer">

@@ -121,6 +121,46 @@ const University = [
     "index": "24",
     "title": "University of York",
   },
+  { 
+    "id": 25,
+    "index": "25",
+    "title": "Sheffield Hallam University",
+  },
+  { 
+    "id": 26,
+    "index": "26",
+    "title":  "University of Strathclyde",
+  },
+  { 
+    "id": 27,
+    "index": "27",
+    "title": "University of Essex",
+  },
+  { 
+    "id": 28,
+    "index": "28",
+    "title": "University of East Anglia",
+  },
+  { 
+    "id": 29,
+    "index": "29",
+    "title": "Lancaster university",
+  },
+  { 
+    "id": 30,
+    "index": "30",
+    "title": "University of Bath",
+  },
+  { 
+    "id": 31,
+    "index": "31",
+    "title": "Loughborough university",
+  },
+  { 
+    "id": 32,
+    "index": "32",
+    "title": "University of St Andrews",
+  },
 
 
 ]

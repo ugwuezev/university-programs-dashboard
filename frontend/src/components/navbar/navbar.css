@@ -1,6 +1,6 @@
 .ibm__navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
     padding: 1rem 2rem;
@@ -9,7 +9,7 @@
 .ibm__navbar-links {
     flex: 1;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
 }
 

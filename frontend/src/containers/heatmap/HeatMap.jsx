@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './heatmap.css';
 import { Navbar, Footer} from '../../components';
     
 const HeatMap = () => {
+
+  useEffect(() => {
+    document.title = "Heat Map";
+  }, []);
+
   return (
     <div className="HeatMap">
 

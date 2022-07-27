@@ -3,9 +3,30 @@ import './home.css';
 import { Navbar, Footer, MyButton, SearchInput } from '../../components';
 
 const Home = () => {
+  
   useEffect(() => {
     document.title = "Tweets";
   }, []);
+ 
+  const filters = {
+    University: ["University College London", "Imperial", "Durham Universiy", "University of Glasgow"],
+    Keyword: ["Artificial intelligence", "Quantum", "Lecture", "Watson", "Analysis"],
+    Time: ["All Time", "Past  24 Hours", "Past Week", "Past Month", "Past Year"]
+  };
+
+  const tweets = {
+    Image: ["ucl_image", "imperial_image", "durham_image", "glasgow_image", "leeds_image"],
+    SchoolName: ["UCL", "Imperial", "Durham Universiy", "University of Glasgow", "Leeds University"],
+    Username: ["@ucl", "@icl", "@durham", "@glasgow", "@leeds"],
+    Time: ["30s", "2m", "5h", "1M", "18/06/2022"],
+    Content: [
+      "Hey1! This is me just testing things out",
+      "Hey2! This is me just testing things out",
+      "Hey3! This is me just testing things out",
+      "Hey4! This is me just testing things out",
+      "Hey5! This is me just testing things out"
+      ]  
+  };
 
   return (
     <div>
@@ -14,7 +35,7 @@ const Home = () => {
           <Navbar />
         </div>
 
-        <div className="header">
+        <div className="h_header">
           <h1>Matching Tweets</h1>
         </div>
         
@@ -31,66 +52,36 @@ const Home = () => {
         </div>
       
         <div className="grid">
-            <div className="grid_item">
-                <div className="grid_item_filter">
-                    First Column 1
-                </div>
-                <div className="grid_item_filter">
-                    First Column 2
-                </div>
-                <div className="grid_item_filter">
-                    First Column 3
-                </div>
-              
-            </div>
-            <div className="grid_item">
+
+          <div className="grid_item">
+            {Object.keys((filters)).map(category => 
+              <div key={category}>
+                <h2>{category}</h2>
+                {filters[category].map(item => (
+                  <div>
+                    <input value={item} type="radio" />
+                      <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="grid_item">
             <div className="grid_item_tweet">
-                    <div className="grid_item_tweet_image">
-                      Image
-                    </div>
-                    <div className="grid_item_tweet_content">
-                      <div className="grid_item_tweet_header">
-                      <span>Name</span>
-                      <span>Username</span>
-                      <span>Time</span>
-                      </div>
-                      <div className="grid_item_tweet_body">
-                        Tweet Content
-                      </div>
-                    </div>
-                </div>
-                <div className="grid_item_tweet">
-                    <div className="grid_item_tweet_image">
-                      Image
-                    </div>
-                    <div className="grid_item_tweet_content">
-                      <div className="grid_item_tweet_header">
-                      <span>Name</span>
-                      <span>Username</span>
-                      <span>Time</span>
-                      </div>
-                      <div className="grid_item_tweet_body">
-                        Tweet Content
-                      </div>
-                    </div>
-                </div>
-                <div className="grid_item_tweet">
-                    <div className="grid_item_tweet_image">
-                      Image
-                    </div>
-                    <div className="grid_item_tweet_content">
-                      <div className="grid_item_tweet_header">
-                      <span>Name</span>
-                      <span>Username</span>
-                      <span>Time</span>
-                      </div>
-                      <div className="grid_item_tweet_body">
-                        Tweet Content
-                      </div>
-                    </div>
-                </div>
+            {Object.keys((tweets)).map(category => 
+              <div key={category}>
+                {tweets[category].map(item => (
+                  <div>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             </div>
-           
+          </div>
+            
         </div>
       <Footer />
 

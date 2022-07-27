@@ -1,5 +1,5 @@
-.header {
-  margin-top: 100px;
+.h_header {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -39,7 +39,7 @@
 
 .grid_item_tweet{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 8 px;
   text-align: center;
   padding: 25px;

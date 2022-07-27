@@ -6,3 +6,4 @@ export { default as Signout } from './signout/Signout';
 export { default as SearchFunction } from './search/SearchFunction';
 export { default as SearchInput } from './search/SearchInput';
 export { default as Table } from './table/Table';
+export { default as MyTable } from './table/MyTable';
