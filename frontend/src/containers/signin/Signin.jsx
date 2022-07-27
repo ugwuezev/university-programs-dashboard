@@ -3,7 +3,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import React, { useState } from "react";
 import './signin.css';
-import { Header } from '../../components';
+import { Header, Footer } from '../../components';
 import { Link } from 'react-router-dom';
 
 const Signin = () => {
@@ -22,7 +22,7 @@ const Signin = () => {
   };
 
 	return (
-		<div className="Signin">
+		<div>
      <div>
       <Header />
      </div>
@@ -97,6 +97,8 @@ const Signin = () => {
         </Grid>
       </Container>
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -9,3 +9,8 @@
 body {
     background: var(--color-bg_);
   }
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
