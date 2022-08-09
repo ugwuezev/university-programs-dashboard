@@ -4,11 +4,11 @@
     grid-template-rows: 80px 50px 70px auto 80px;
     grid-gap: 1em;
     grid-template-areas:
-        "u_navbar u_navbar u_navbar u_navbar u_navbar"
-        "u_header u_header u_header u_header u_header"
-        "u_search u_search u_search u-search u_search"
-        "u_content u_content u_content u_content u_content"
-        "u_footer u_footer u_footer u_footer u_footer";
+        "k_navbar k_navbar k_navbar k_navbar k_navbar"
+        "k_header k_header k_header k_header k_header"
+        "k_search k_search k_search k-search k_search"
+        "k_content k_content k_content k_content k_content"
+        "k_footer k_footer k_footer k_footer k_footer";
 
 }
 

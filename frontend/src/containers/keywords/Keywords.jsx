@@ -17,7 +17,7 @@ const Keywords = () => {
   return (
     <div className="k_grid">
 
-      <div className="_navbar gradient__bg">
+      <div className="k_navbar gradient__bg">
         <Navbar />
       </div>
 
@@ -48,4 +48,4 @@ const Keywords = () => {
   )
 }
 
-export default Keywords
+export default Keywords;
