@@ -6,7 +6,6 @@ import axios from "axios";
 const SearchFunction = ({setData, path, placeholder }) => {
     const [query, setQuery] = useState("");
     
-
     useEffect(() => {
       const fetchData = async () => {
         const res = await axios.get(`http://localhost:5000${path}?q=${query}`);

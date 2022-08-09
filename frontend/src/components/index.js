@@ -1,4 +1,5 @@
 export { default as Navbar } from './navbar/Navbar';
+export { default as Spinner } from './spinner/Spinner';
 export { MyButton } from './button/Button';
 export { default as Header } from './header/Header';
 export { default as Footer } from './footer/Footer';
