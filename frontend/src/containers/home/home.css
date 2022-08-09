@@ -1,15 +1,35 @@
-.h_header {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
-.search_bar {
+.h_grid {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  grid-gap: 8px;
+  grid-template-rows: 80px 50px 70px auto 80px;
+  grid-gap: 1em;
+  grid-template-areas:
+      "h_navbar h_navbar h_navbar h_navbar h_navbar"
+      "h_header h_header h_header h_header h_header"
+      "h_search h_search h_search h-search h_search"
+      "h_content h_content h_content h_content h_content"
+      "h_footer h_footer h_footer h_footer h_footer";
+
 }
 
-.search_bar_item {
+.h_navbar {
+  margin-bottom: auto;
+}
+
+.h_header {
+  margin-top: 10px;
+}
+
+.h_search {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.h_search_item {
   margin-bottom: 20px;
   /* display: grid; */
   
@@ -17,64 +37,21 @@
 
 /* Container for dividing the tweets sand filter sections */
 
-.grid {
+.h_content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   grid-gap: 8 px;
 
 }
 
-.grid_item {
-  text-align: center;
+.h_grid_item {
   padding: 25px;
   display: grid;
 }
 
-.grid_item_filter {
-  text-align: center;
-  padding: 25px;
-  display: grid;
-  flex-direction: column;
+
+.h_footer {
+  justify-content: center;
+  align-items:center;
+  width: 100%;
 }
-
-.grid_item_tweet{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 8 px;
-  text-align: center;
-  padding: 25px;
-  margin: 5px;
-  justify-content: baseline;
-  
-}
-
-.grid_item_tweet_image {
-  margin-left: 5px;
-  width: 50px;
-}
-
-.grid_item_tweet_content {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.grid_item_tweet_header {
-  justify-content: space-between;
-  text-align: left;
-  margin-left: 0px;
-}
-
-.grid_item_tweet_header > span {
-  justify-content: space-between;
-  text-align: center;
-}
-
-.grid_item_tweet_body {
-  margin-right: 20px;
-}
-
-
-
-
