@@ -1,10 +1,8 @@
-
 const Keyword = require("../keywordList.js");
 const University = require('../UniversityList.js');
 
-const searchKeyword = async(req, res) => {
+const searchKeyword = (req, res) => {
     const { q } = req.query;
-  
     const keys = ["index", "title"];
   
     const search = (data) => {
@@ -13,12 +11,11 @@ const searchKeyword = async(req, res) => {
       );
     };
   
-    q ? res.json(search(Keyword).slice(0, 20)) : res.json(Keyword.slice(0, 20));
+    q ? res.json(search(Keyword).slice(0, 35)) : res.json(Keyword.slice(0, 35));
   };
 
-const searchUniversity = async(req, res) => {
+const searchUniversity = (req, res) => {
     const { q } = req.query;
-
     const keys = ["index", "title"];
 
     const search = (data) => {
@@ -27,9 +24,14 @@ const searchUniversity = async(req, res) => {
         );
     };
 
-    q ? res.json(search(University).slice(0, 20)) : res.json(University.slice(0, 20));
+    q ? res.json(search(University).slice(0, 35)) : res.json(University.slice(0, 35));
   };
 
 
-module.exports.searchKeyword = searchKeyword;
-module.exports.searchUniversity = searchUniversity;
+/* module.exports.searchKeyword = searchKeyword;
+module.exports.searchUniversity = searchUniversity; */
+
+module.exports = { 
+  searchKeyword,
+  searchUniversity
+}

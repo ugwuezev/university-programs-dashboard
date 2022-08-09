@@ -1,12 +1,15 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { Signin, Login, Home, HeatMap, WordCloud, BarCharts, Keywords, Universities, Error, Test } from "./containers";
+import { Signin, Register, Home, HeatMap, WordCloud, BarCharts, Keywords, Universities, Error, Test } from "./containers";
 import './App.css';
 
 
 const App = () => {
   
   return (
+    <>
     <Router>
       <div className="App">
         <Routes>
@@ -22,10 +25,12 @@ const App = () => {
 
             {/* To Do: conditional statements for displaying signin without Navbar */}
             <Route path="/signin" element={<Signin/>} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </Router>
+    <ToastContainer />
+    </>
   );
 }
 

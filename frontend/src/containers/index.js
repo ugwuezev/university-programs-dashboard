@@ -5,6 +5,6 @@ export { default as BarCharts } from './barcharts/BarCharts';
 export { default as Universities } from './universities/Universities';
 export { default as Keywords} from './keywords/Keywords';
 export { default as Signin } from './signin/Signin';
-export { default as Login } from './signin/Login';
+export { default as Register } from './register/Register';
 export { default as Error } from './error/Error';
 export { default as Test } from './test/Test';

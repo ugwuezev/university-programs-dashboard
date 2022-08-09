@@ -1,23 +1,72 @@
 import { Container, Button,	Grid,	Paper, Box,	TextField,	IconButton,	InputAdornment } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import './signin.css';
-import { Header, Footer } from '../../components';
+import { Header, Footer, Spinner } from '../../components';
+import { login, reset } from '../../features/auth/authSlice'
 import { Link } from 'react-router-dom';
 
 const Signin = () => {
 
-  const [values, setValues] = useState({
+  const [formData, setFormData] = useState({
     email: "",
-    pass: "",
+    password: "",
     showPass: false,
-  });
+});
+
+  const { email, password } = formData
+      
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    const userData = {
+      email,
+      password,
+    }
+
+    dispatch(login(userData))
+  }
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
 
   const handlePassVisibilty = () => {
-    setValues({
-      ...values,
-      showPass: !values.showPass,
+    setFormData({
+      ...formData,
+      showPass: !formData.showPass,
     });
   };
 
@@ -36,7 +85,7 @@ const Signin = () => {
           style={{ minHeight: "100vh" }}
         >
           <Paper elelvation={2} sx={{ padding: 5 }}>
-          <form>
+          <form onSubmit={onSubmit}>
             <Grid 
               container 
               direction="column" 
@@ -45,21 +94,29 @@ const Signin = () => {
                 <TextField
                   type="email"
                   fullWidth
-                  label="Username"
-                  placeholder="Username"
+                  label="Email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
                   variant="outlined"
                   required
+                  onChange={onChange}
                 />
               </Grid>
 
               <Grid item>
               <TextField
-                type={values.showPass ? "text" : "password"}
+                type={formData.showPass ? "text" : "password"}
                 fullWidth
                 label="Password"
+                id="password"
+                name="password"
+                value={password}
                 placeholder="Password"
                 variant="outlined"
                 required
+                onChange={onChange}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -68,7 +125,7 @@ const Signin = () => {
                         aria-label="toggle password"
                         edge="end"
                       >
-                        {values.showPass ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                        {formData.showPass ? <VisibilityOffIcon /> : <VisibilityIcon />}
                       </IconButton>
                     </InputAdornment>
                   ),
