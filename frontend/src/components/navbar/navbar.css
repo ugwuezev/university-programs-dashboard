@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     padding: 1rem 2rem;
+    width: 100%;
 }
 
 .ibm__navbar-links {
@@ -18,8 +18,8 @@
 }
 
 .ibm__navbar-links_logo img {
-    width: 62.56px;
-    height: 16.02px;
+    width: 82.56px;
+    height: 30.02px;
 }
 
 .ibm__navbar-links_container {
@@ -98,6 +98,7 @@
 .ibm__navbar-menu_container-links-sign {
     display: none;
 }
+
 
 @media screen and (max-width: 1050px) {
     .ibm__navbar-links_container {

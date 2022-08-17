@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './keywords.css';
-import { Navbar, MyButton, Footer, SearchFunction, MyTable, SearchInput } from '../../components';
+import { Navbar, MyButton, Footer, SearchFunction, KeywordTable, SearchInput } from '../../components';
 
 const Keywords = () => {
 
@@ -22,7 +22,7 @@ const Keywords = () => {
       </div>
 
       <div  className="k_header">
-        <h1>List of Keywords</h1>
+        <h1>Manage Keywords</h1>
       </div>
       
       <div className="k_search">
@@ -38,7 +38,7 @@ const Keywords = () => {
       </div>
       
       <div className="k_content">
-        <MyTable data={data} title="KEYWORD" />
+        <KeywordTable data={data} title="KEYWORD" />
       </div>
       
       <div className="k_footer">
