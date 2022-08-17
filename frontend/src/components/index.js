@@ -6,5 +6,6 @@ export { default as Footer } from './footer/Footer';
 export { default as Signout } from './signout/Signout';
 export { default as SearchFunction } from './search/SearchFunction';
 export { default as SearchInput } from './search/SearchInput';
-export { default as Table } from './table/Table';
-export { default as MyTable } from './table/MyTable';
+export { default as Table } from './table/UniversityTable';
+export { default as UniversityTable } from './table/UniversityTable';
+export { default as KeywordTable } from './table/KeywordTable';

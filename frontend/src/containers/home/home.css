@@ -25,14 +25,24 @@
   flex-direction: row;
   margin-top: 10px;
   justify-content: space-around;
-  align-items: center;
   width: 100%
 }
 
-.h_search_item {
+.h_search_filter {
+  display: flex;
+  align-items: flex-start;
   margin-bottom: 20px;
-  /* display: grid; */
-  
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.h_search_searchbar_sort {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  width: 60%;
 }
 
 /* Container for dividing the tweets sand filter sections */
@@ -41,14 +51,59 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-gap: 8 px;
-
 }
 
-.h_grid_item {
+.h_content_filter {
   padding: 25px;
   display: grid;
+  font-size: 18px;
+  margin-left: 20px;
 }
 
+.h_content_tweet {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 10px;
+  border: 1px solid #CFD9DE;
+  margin-bottom: 0px;
+  margin-right: 20px;
+}
+
+.h_content_tweet_body {
+  flex: 1;
+  padding: 10px;
+}
+
+.h_content_tweet_headerText > h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.h_content_tweet_headerSpecial {
+  font-weight: 600;
+  font-size: 17px;
+  color: gray;
+}
+
+.h_content_tweet__headerDescription {
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-bottom: 5px solid red;
+}
+
+.h_content_tweet_avatar {
+  padding: 10px;
+}
+
+
+/* .h_content_tweet_header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 20px;
+}
+ */
 
 .h_footer {
   justify-content: center;

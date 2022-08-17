@@ -6,7 +6,8 @@
   }
 
 body {
-  background: var(--color-bg_);
+  /* background: var(--color-bg_); */
+  background-color: #e6ecf0;
 }
 
 a {

@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
+import { Avatar } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -15,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 17,
   },
 }));
 
@@ -30,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const MyTable = ({ data, title }) => {
+const UniversityTable = ({ data }) => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -47,21 +48,51 @@ const MyTable = ({ data, title }) => {
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
+        
         <TableHead>
           <TableRow>
-            <StyledTableCell>S/N</StyledTableCell>
-            <StyledTableCell align="right">{title}</StyledTableCell>
+            <StyledTableCell align="center">
+              S/N
+            </StyledTableCell>
+            <StyledTableCell align="left">
+              FULL NAME
+            </StyledTableCell>
+            <StyledTableCell align="center">
+              TWITTER AVI
+            </StyledTableCell>
+            <StyledTableCell align="left">
+              TWITTER NAME
+            </StyledTableCell>
+            <StyledTableCell align="left">
+              TWITTER HANDLE
+            </StyledTableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {data
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((item) => (
-            <StyledTableRow key={item.id}>
-              <StyledTableCell component="th" scope="row">
-                {item.id}
+          .map((item, index) => (
+            <StyledTableRow key={item._id}>
+              <StyledTableCell align="center" component="th" scope="row">
+                {index + 1}
               </StyledTableCell>
-              <StyledTableCell align="right">{item.title}</StyledTableCell>
+              <StyledTableCell align="left">
+                {item.full_name}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Avatar
+                      src = {item.twitter_avi_link}
+                      alt = "university avi"
+                      sx={{ width: 70, height: 70}}
+                    />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {item.twitter_name}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {item.twitter_handle}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -79,4 +110,4 @@ const MyTable = ({ data, title }) => {
   );
 };
 
-export default MyTable;
+export default UniversityTable;

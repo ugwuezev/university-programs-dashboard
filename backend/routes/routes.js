@@ -8,14 +8,13 @@ const { getTweets} = require('../controllers/tweetController');
 const { getUniversities} = require('../controllers/universityController');
 const { getKeywords} = require('../controllers/keywordController');
 const { getTests } = require('../controllers/testController');
-
+const { ReadData } = require('../controllers/ReadData');
 
 // Tests
 router.get('/tests', getTests);
 router.get('/tweets', getTweets);
-router.get('/uni', getUniversities);
-router.get('/key', getKeywords);
-
+router.get('/key', searchKeyword);
+router.get('/uni', searchUniversity)
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "This would be modified to contain tweets" });
@@ -31,14 +30,13 @@ router.post('/login', loginUser);
 
 router.get('/me', protect, getMe)
 
-router.get('/keywords', searchKeyword);
+router.get('/universities', getUniversities);
+router.get('/univ', ReadData);
 
-router.get('/universities', searchUniversity);
+router.get('/keywords', getKeywords);
 
-
-
+//router.get('/keywords', searchKeyword);
 // router.get('/tweets', searchUniversity);
-
 
 
 // will match any other path
