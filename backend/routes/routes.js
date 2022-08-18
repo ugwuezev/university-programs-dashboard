@@ -12,9 +12,9 @@ const { ReadData } = require('../controllers/ReadData');
 
 // Tests
 router.get('/tests', getTests);
-router.get('/tweets', getTweets);
 router.get('/key', searchKeyword);
 router.get('/uni', searchUniversity)
+router.get('/univ', ReadData);
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "This would be modified to contain tweets" });
@@ -30,10 +30,12 @@ router.post('/login', loginUser);
 
 router.get('/me', protect, getMe)
 
+router.get('/tweets', getTweets);
+
 router.get('/universities', getUniversities);
-router.get('/univ', ReadData);
 
 router.get('/keywords', getKeywords);
+
 
 //router.get('/keywords', searchKeyword);
 // router.get('/tweets', searchUniversity);

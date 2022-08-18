@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './keywords.css';
-import { Navbar, MyButton, Footer, SearchFunction, KeywordTable, SearchInput } from '../../components';
+import { Navbar, Footer, KeywordTable } from '../../components';
 
 const Keywords = () => {
 
@@ -25,20 +25,8 @@ const Keywords = () => {
         <h1>Manage Keywords</h1>
       </div>
       
-      <div className="k_search">
-        
-          <SearchFunction setData={UpdateData} path="/keywords" placeholder="Search Keywords" />
-      
-      
-          <SearchInput placeholder="New Keyword" />
-        
-        
-          <MyButton className="input" path="/keywords" name="Add" />
-        
-      </div>
-      
       <div className="k_content">
-        <KeywordTable data={data} title="KEYWORD" />
+        <KeywordTable setData={UpdateData} data={data} />
       </div>
       
       <div className="k_footer">
