@@ -1,19 +1,12 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
-  }
 
 .u_grid {
     display: grid;
-    grid-template-rows: 80px 50px 70px auto 80px;
+    grid-template-rows: 80px 50px auto 80px;
     grid-gap: 1em;
     grid-template-areas:
         "u_navbar u_navbar u_navbar u_navbar u_navbar"
         "u_header u_header u_header u_header u_header"
         "u_search u_search u_search u-search u_search"
-        "u_content u_content u_content u_content u_content"
         "u_footer u_footer u_footer u_footer u_footer";
 }
 
@@ -25,42 +18,11 @@
     margin-top: 10px;
 }
 
-.u_search {
-    display: flex;
-    flex-direction: flex-start;
-    margin-top: 10px;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%
-}
-
-.u_search_filter {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-left: 10%;
-    justify-content: space-around;
-    align-items: center;
-    width: 50%
-}
-
-.u_search_addnew {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-right: 10%;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%
-}
-
-
 .u_content {
-    display: grid;
-    direction: row;
     justify-content: center;
-    align-items:center;
-    width: 100%;
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
 }
 
 .u_footer {

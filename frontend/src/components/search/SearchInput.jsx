@@ -2,7 +2,7 @@
 import "./search.css";
 
 
-const SearchInput = ({onChange, placeholder}) => {
+const SearchInput = ({onChange, placeholder, value}) => {
   
     return (
       <div>
@@ -11,6 +11,7 @@ const SearchInput = ({onChange, placeholder}) => {
             className="input_search"
             placeholder={placeholder}
             onChange={onChange}
+            value={value}
           />
         
     </div>
