@@ -1,28 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
-import { Navbar, Footer, MyButton, SearchInput } from '../../components';
+import { Navbar, Footer, MyButton } from '../../components';
 import { Avatar } from '@mui/material';
+import axios from "axios";
+import Pagination from '@mui/material/Pagination';
+import usePagination from "./Pagination";
 
 const Home = () => {
+
+  // fetching data from api
   const [tweets, setTweets] = useState([])
 
-  const apiUrl = "http://localhost:5000/tweets";
-  const fetchTweets = async () => {
-    const response = await fetch(apiUrl)
-    const data = await response.json()
-    setTweets(data)
-  }
- 
   useEffect(() => {
     document.title = "Twitter Feed";
+    const apiUrl = `http://localhost:5000/tweets`;
+
+    const fetchTweets = async () => {
+    const res = await axios.get(apiUrl);
+    setTweets(res.data);
+  }
+ 
     fetchTweets()
   }, [] );
+  
+  // handling pagination
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 5;
 
-    const filters = {
-      University: ["All", "University College London", "Imperial", "Durham Universiy", "University of Glasgow"],
-      Keyword: ["All", "Artificial intelligence", "Quantum", "Lecture", "Watson", "Analysis"],
-      Time: ["All Time", "Past  24 Hours", "Past Week", "Past Month", "Past Year"]
-    };
+  const count = Math.ceil(tweets.length / PER_PAGE);
+  const _DATA = usePagination(tweets, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+  
+  // search function
+  const [q, setQ] = useState("");
+
+  const [searchParam] = useState(["university_name", "tweet_content" ]);
+  
+  const search = (data) => {
+    
+    return data.filter((item) => {
+      return searchParam.some((newItem) => {
+        return (
+          item[newItem]
+          .toString()
+          .toLowerCase()
+          .indexOf(q.toLowerCase()) > -1
+        );
+      });
+    });
+  }
+
+  const filters = {
+    University: ["All", "University College London", "Imperial", "Durham Universiy", "University of Glasgow"],
+    Keyword: ["All", "Artificial intelligence", "Quantum", "Lecture", "Watson", "Analysis"],
+    Time: ["All Time", "Past  24 Hours", "Past Week", "Past Month", "Past Year"]
+  };
 
 
   return (
@@ -45,7 +81,12 @@ const Home = () => {
             
             <div className="h_search_searchbar_sort">
               <div>
-                <SearchInput  placeholder="Search by Keyword/University" />
+                <input
+                  className="h_search_input"
+                  placeholder="Search by University/Keyword"
+                  onChange={(e) => setQ(e.target.value)}
+                  value={q}
+                />
               </div>
               <div>
                 <MyButton path="/" name="Sort" />
@@ -73,7 +114,7 @@ const Home = () => {
 
          <div>
             
-            {tweets.map(tweet =>
+            {search(_DATA.currentData()).map(tweet => (
               <div key={tweet._id} className="h_content_tweet">
                 <div className="h_content_tweet_avatar">
                   <Avatar
@@ -100,15 +141,27 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-               )}
-          
+               ))}
           </div>
+        </div>
+
+        <div className="h_pagination">
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            color="primary"
+            shape="rounded"
+            onChange={handleChange}
+          />
         </div>
 
         <div className="h_footer">
           <Footer />
         </div>
       
+        
 
     </div>
     

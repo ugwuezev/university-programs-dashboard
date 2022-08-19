@@ -95,7 +95,21 @@
   padding: 10px;
 }
 
+.h_search_input {
+  padding: 12px;
+  height: 50px;
+  font-size: 20px;
+  width: 300px;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.h_pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
 /* .h_content_tweet_header {
   display: flex;
   flex-direction: row;
