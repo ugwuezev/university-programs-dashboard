@@ -37,7 +37,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const UniversityTable = ({ setData, data }) => {
-
+  
+  // handling pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -50,6 +51,7 @@ const UniversityTable = ({ setData, data }) => {
     setPage(0);
   };
 
+  // handling search function
   const [q, setQ] = useState("");
 
   const [searchParam] = useState(["full_name", "twitter_name", "twitter_handle"]);
@@ -70,7 +72,8 @@ const UniversityTable = ({ setData, data }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/universities`);
+      const apiUrl = `http://localhost:5000/universities`;
+      const res = await axios.get(apiUrl);
       setData(res.data);
     };
 
