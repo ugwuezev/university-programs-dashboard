@@ -2,19 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 const { loginUser, registerUser, getMe } = require('../controllers/userController');
-const { searchKeyword, searchUniversity } = require('../controllers/search');
 const { protect } = require('../middleware/authMiddleware')
 const { getTweets} = require('../controllers/tweetController');
 const { getUniversities} = require('../controllers/universityController');
 const { getKeywords} = require('../controllers/keywordController');
 const { getTests } = require('../controllers/testController');
-const { ReadData } = require('../controllers/ReadData');
 
 // Tests
 router.get('/tests', getTests);
-router.get('/key', searchKeyword);
-router.get('/uni', searchUniversity)
-router.get('/univ', ReadData);
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "This would be modified to contain tweets" });
