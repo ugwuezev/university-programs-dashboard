@@ -8,12 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { Avatar } from '@mui/material';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./table.css";
 import { MyButton } from '../../components';
+import { Avatar } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,11 +35,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
 const UniversityTable = ({ setData, data }) => {
   
   // handling pagination
-  const [page, setPage] = useState(0);
+  const [initPage, setPage] = useState(0);
+  const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -53,12 +53,12 @@ const UniversityTable = ({ setData, data }) => {
 
   // handling search function
   const [q, setQ] = useState("");
-
+  const [filteredData, setFilteredData] = useState([]);
   const [searchParam] = useState(["full_name", "twitter_name", "twitter_handle"]);
   
   const search = (data) => {
     
-    return data.filter((item) => {
+    const searchResult = data.filter((item) => {
       return searchParam.some((newItem) => {
         return (
           item[newItem]
@@ -68,17 +68,32 @@ const UniversityTable = ({ setData, data }) => {
         );
       });
     });
+
+    //console.log(data);
+    //console.log(searchResult, "searchResult");
+    setFilteredData(searchResult);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const apiUrl = `http://localhost:5000/universities`;
-      const res = await axios.get(apiUrl);
-      setData(res.data);
-    };
+  const fetchData = async () => {
+    const apiUrl = `http://localhost:5000/universities`;
+    const res = await axios.get(apiUrl);
+    setData(res.data);
+    //setFilteredData(res.data);
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [setData]);
+
+  }, []);
+
+  useEffect(() => {
+    setSearchResultPage(0)
+    search(data)
+  
+  }, [q]);
+
+  //console.log(filteredData,"filteredData");
+  const page = q ? searchResultPage : initPage;
 
   return (
     <div className="ut_content">
@@ -128,12 +143,12 @@ const UniversityTable = ({ setData, data }) => {
             </TableHead>
 
             <TableBody>
-              {search(data)
+              {(q ? filteredData : data)
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item, index) => (
                 <StyledTableRow key={item._id}>
                   <StyledTableCell align="center" component="th" scope="row">
-                    {index + 1}
+                    {((page) * rowsPerPage) + index + 1}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.full_name}
@@ -162,7 +177,7 @@ const UniversityTable = ({ setData, data }) => {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={data.length}
+            count={q ? filteredData.length : data.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

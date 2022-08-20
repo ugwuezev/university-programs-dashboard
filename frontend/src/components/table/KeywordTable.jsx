@@ -14,14 +14,13 @@ import Button from '@mui/material/Button';
 import "./table.css";
 import { MyButton } from '../../components';
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 17,
   },
 }));
 
@@ -35,10 +34,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
 const KeywordTable = ({ setData, data }) => {
 
-  const [page, setPage] = React.useState(0);
+  const [initPage, setPage] = useState(0);
+  const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -50,13 +49,14 @@ const KeywordTable = ({ setData, data }) => {
     setPage(0);
   };
 
+  // handling search function
   const [q, setQ] = useState("");
-
+  const [filteredData, setFilteredData] = useState([]);
   const [searchParam] = useState(["name"]);
   
   const search = (data) => {
     
-    return data.filter((item) => {
+    const searchResult = data.filter((item) => {
       return searchParam.some((newItem) => {
         return (
           item[newItem]
@@ -66,16 +66,29 @@ const KeywordTable = ({ setData, data }) => {
         );
       });
     });
+
+    setFilteredData(searchResult);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/keywords`);
-      setData(res.data);
-    };
+  const fetchData = async () => {
+    const apiUrl = `http://localhost:5000/keywords`;
+    const res = await axios.get(apiUrl);
+    setData(res.data);
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [setData]);
+
+  }, []);
+
+  useEffect(() => {
+    setSearchResultPage(0)
+    search(data)
+  
+  }, [q]);
+
+  //console.log(filteredData,"filteredData");
+  const page = q ? searchResultPage : initPage;
 
   return (
 
@@ -117,12 +130,12 @@ const KeywordTable = ({ setData, data }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {search(data)
+              {(q ? filteredData : data)
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item, index) => (
                 <StyledTableRow key={item._id}>
                   <StyledTableCell align="center" component="th" scope="row">
-                    {index + 1}
+                  {((page) * rowsPerPage) + index + 1}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.name}
@@ -139,7 +152,7 @@ const KeywordTable = ({ setData, data }) => {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={data.length}
+            count={q ? filteredData.length : data.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
