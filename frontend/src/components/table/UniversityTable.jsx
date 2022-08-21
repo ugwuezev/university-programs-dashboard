@@ -12,9 +12,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./table.css";
-import { MyButton } from '../../components';
+import { BigButton } from '../../components';
 import { Avatar } from '@mui/material';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+//import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import SortIcon from '@mui/icons-material/Sort';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -124,20 +131,42 @@ const UniversityTable = ({ setData, data }) => {
     <div className="ut_content">
       <div>
         <span className="ut_search_bar">
-          <input
+
+          <Paper
+            component="form"
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 600 }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search university"
+              inputProps={{ 'aria-label': 'search google maps' }}
+              onChange={(e) => setQ(e.target.value)}
+              value={q}
+            />
+            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        
+
+          {/* <input
             className="ut_search_input"
             placeholder="Search University"
             onChange={(e) => setQ(e.target.value)}
             value={q}
           />
+          */}
+
           <div className="ut_addnew">  
-            <MyButton path="/universities" name="Add New University" />
+            <BigButton path="/universities" name="Add New University" />
           </div>
         </span>
       
         {/* <div className="ut_addnew">
           <MyButton path="/universities" name="Add New University" />
-        </div> */}
+        </div> 
+        */}
+
       </div>
       
       <div className="ut_table">
@@ -149,12 +178,22 @@ const UniversityTable = ({ setData, data }) => {
                 <StyledTableCell align="center">
                   S/N
                 </StyledTableCell>
-                <StyledTableCell align="left" onClick={sortByName}>
+
+                <StyledTableCell align="left">
                   FULL NAME
+                  <IconButton 
+                    color="primary" 
+                    sx={{ p: '10px' }} 
+                    aria-label="directions"
+                    onClick={sortByName}
+                  >
+                    <SortIcon />
+                  </IconButton>
                   {sorted.sorted === "name"
 									? renderArrow()
 									: null}
                 </StyledTableCell>
+                
                 <StyledTableCell align="left">
                   TWITTER AVI
                 </StyledTableCell>

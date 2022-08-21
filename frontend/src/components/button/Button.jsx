@@ -3,12 +3,20 @@ import './button.css';
 import { Link } from 'react-router-dom';
 
 
-const MyButton = (props) => {
+const BigButton = (props) => {
   return (
     <Link to={props.path}>
-      <button className='btn'>{props.name}</button>
+      <button className='ut_btn'>{props.name}</button>
     </Link>
   );
 }
 
-export { MyButton };
+const SmallButton = (props) => {
+  return (
+    <Link to={props.path}>
+      <button className='kt_btn'>{props.name}</button>
+    </Link>
+  );
+}
+
+export { BigButton, SmallButton };
