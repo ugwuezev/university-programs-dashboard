@@ -149,3 +149,28 @@
   align-items:center;
   width: 100%;
 }
+
+
+.h_sort_btn {
+  padding: 12px 20px;
+  height: 50px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  width: 100px;
+  color: #fff;
+  cursor: pointer;
+  background-color: var(--primary);
+  align-content: center;
+}
+
+.h_sort_btn:hover {
+  padding: 6px 18px;
+  transition: all 0.3s ease-out;
+  background-color: transparent;
+  color: red;
+  border-radius: 4px;
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease-out;
+}

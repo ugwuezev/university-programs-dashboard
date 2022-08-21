@@ -22,7 +22,7 @@ def KeywordMatching():
     #string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(iteration)}
     # first run: 10 & second: 10, 21, 1 & Third: 21, 32, 1
     
-    string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(10,21,1)}
+    string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(21,32,1)}
 
     # keyword matching algorithm
     for keyword in keywordList:

@@ -12,8 +12,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./table.css";
-import { MyButton } from '../../components';
+import { SmallButton } from '../../components';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+//import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import SortIcon from '@mui/icons-material/Sort';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -121,19 +128,38 @@ const KeywordTable = ({ setData, data }) => {
     <div className="kt_content">
       <div>
         <span className="kt_search_bar">
-          <input
+
+        <Paper
+            component="form"
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 600 }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search university"
+              inputProps={{ 'aria-label': 'search google maps' }}
+              onChange={(e) => setQ(e.target.value)}
+              value={q}
+            />
+            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+
+          {/* <input
             className="kt_search_input"
             placeholder="Search Keyword"
             onChange={(e) => setQ(e.target.value)}
             value={q}
           />
+         */}
+
           <div className="kt_addnew">
             <input
               className="kt_search_input"
               placeholder="Add New Keyword"
             />
             <span className="kt_button" >
-              <MyButton path="/keywords" name="Add" />
+              <SmallButton path="/keywords" name="Add" />
             </span>
           </div>
         </span>
@@ -147,8 +173,16 @@ const KeywordTable = ({ setData, data }) => {
                 <StyledTableCell align="center">
                   S/N
                 </StyledTableCell>
-                <StyledTableCell align="left" onClick={sortByName}>
+                <StyledTableCell align="left">
                   KEYWORD
+                  <IconButton 
+                    color="primary" 
+                    sx={{ p: '10px' }} 
+                    aria-label="directions"
+                    onClick={sortByName}
+                  >
+                    <SortIcon />
+                  </IconButton>
                   {sorted.sorted === "name"
 									? renderArrow()
 									: null}

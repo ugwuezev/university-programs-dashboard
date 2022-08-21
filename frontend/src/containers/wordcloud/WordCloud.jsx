@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './wordcloud.css';
-import { Navbar, Footer, MyButton, SearchInput } from '../../components';
+import { Navbar, Footer, BigButton, SearchInput } from '../../components';
 
 const filters = {
   University: ["University College London", "Imperial", "Durham Universiy", "University of Glasgow", "Durham University"],
@@ -26,7 +26,7 @@ const WordCloud = () => {
 
       <div className="w_search">
         <SearchInput className="w_search" placeholder="Search Keyword by University" />
-        <MyButton className="w_input" path="/wordcloud" name="Clear Filter" />
+        <BigButton className="w_input" path="/wordcloud" name="Clear Filter" />
       </div>
 
       <div className="w_filter">

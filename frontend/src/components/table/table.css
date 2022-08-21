@@ -29,8 +29,10 @@ table {
 .ut_search_bar {
   display: flex;
   direction: ltr;
+  height: 50px;
   width: 100%;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .ut_search_input {
@@ -61,8 +63,10 @@ table {
 .kt_search_bar {
   display: flex;
   direction: ltr;
+  height: 50px;
   width: 100%;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .kt_search_input {
