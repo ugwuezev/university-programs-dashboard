@@ -47,7 +47,7 @@ const Home = () => {
   
   // handling pagination
   let [page, setPage] = useState(1);
-  const PER_PAGE = 10;
+  const PER_PAGE = 20;
 
   const count = Math.ceil(tweets.length / PER_PAGE);
   const _DATA = usePagination(filterItems, PER_PAGE);
@@ -93,22 +93,6 @@ const Home = () => {
       setFilterItems(filteredData);
       return;
     }
-/*  
-if (button_name === "All") {
-      setFilterItems(tweets);
-      return;
-    };
-    else if (!button) {
-      setTweets(tweets);
-      return;
-    } */
-    
-    // still need to conditions for keyword and time
-    /* const filteredData = tweets.filter((tweet) => tweet.university_name === button_name);
-    setTweets(filteredData);
-    return; */
-
-    
 
   };
 
@@ -233,14 +217,10 @@ if (button_name === "All") {
       <div className="h_footer">
         <Footer />
       </div>
-      
-        
-
+    
     </div>
     
   );
 }
-
-
 
 export default Home;
