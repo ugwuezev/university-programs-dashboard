@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./table.css";
 import { MyButton } from '../../components';
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,6 +40,9 @@ const KeywordTable = ({ setData, data }) => {
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [keywords, setKeywords] = useState(data);
+  const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -74,6 +78,7 @@ const KeywordTable = ({ setData, data }) => {
     const apiUrl = `http://localhost:5000/keywords`;
     const res = await axios.get(apiUrl);
     setData(res.data);
+    setKeywords(res.data);
   };
 
   useEffect(() => {
@@ -89,6 +94,27 @@ const KeywordTable = ({ setData, data }) => {
 
   //console.log(filteredData,"filteredData");
   const page = q ? searchResultPage : initPage;
+
+
+  // sort function
+  const sortByName = () => {
+		keywords.sort((keywordA, keywordB) => {
+
+			if (sorted.reversed) {
+				return keywordB.name.localeCompare(keywordA.name);
+			}
+			return keywordA.name.localeCompare(keywordB.name);
+		});
+		setData(keywords);
+		setSorted({ sorted: "name", reversed: !sorted.reversed });
+	};
+
+  const renderArrow = () => {
+		if (sorted.reversed) {
+			return <FaArrowUp />;
+		}
+		return <FaArrowDown />;
+	};
 
   return (
 
@@ -121,8 +147,11 @@ const KeywordTable = ({ setData, data }) => {
                 <StyledTableCell align="center">
                   S/N
                 </StyledTableCell>
-                <StyledTableCell align="left">
+                <StyledTableCell align="left" onClick={sortByName}>
                   KEYWORD
+                  {sorted.sorted === "name"
+									? renderArrow()
+									: null}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   ACTION

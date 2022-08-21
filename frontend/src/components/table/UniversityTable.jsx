@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import "./table.css";
 import { MyButton } from '../../components';
 import { Avatar } from '@mui/material';
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,6 +42,8 @@ const UniversityTable = ({ setData, data }) => {
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [universities, setUniversities] = useState(data);
+  const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -78,6 +81,7 @@ const UniversityTable = ({ setData, data }) => {
     const apiUrl = `http://localhost:5000/universities`;
     const res = await axios.get(apiUrl);
     setData(res.data);
+    setUniversities(res.data);
     //setFilteredData(res.data);
   };
 
@@ -94,6 +98,27 @@ const UniversityTable = ({ setData, data }) => {
 
   //console.log(filteredData,"filteredData");
   const page = q ? searchResultPage : initPage;
+
+
+  // sort function
+  const sortByName = () => {
+		universities.sort((universityA, universityB) => {
+
+			if (sorted.reversed) {
+				return universityB.full_name.localeCompare(universityA.full_name);
+			}
+			return universityA.full_name.localeCompare(universityB.full_name);
+		});
+		setData(universities);
+		setSorted({ sorted: "name", reversed: !sorted.reversed });
+	};
+
+  const renderArrow = () => {
+		if (sorted.reversed) {
+			return <FaArrowUp />;
+		}
+		return <FaArrowDown />;
+	};
 
   return (
     <div className="ut_content">
@@ -124,8 +149,11 @@ const UniversityTable = ({ setData, data }) => {
                 <StyledTableCell align="center">
                   S/N
                 </StyledTableCell>
-                <StyledTableCell align="left">
+                <StyledTableCell align="left" onClick={sortByName}>
                   FULL NAME
+                  {sorted.sorted === "name"
+									? renderArrow()
+									: null}
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   TWITTER AVI
