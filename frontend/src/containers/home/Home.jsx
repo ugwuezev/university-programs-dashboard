@@ -5,7 +5,7 @@ import { Avatar } from '@mui/material';
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
 import usePagination from "./Pagination";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+//import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 //import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from '@mui/icons-material/Search';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
@@ -16,6 +16,17 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SortIcon from '@mui/icons-material/Sort';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+//import Typography from '@mui/material/Typography';
+
+// for tweet details
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import RepeatIcon from "@mui/icons-material/Repeat";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import PublishIcon from "@mui/icons-material/Publish";
 
 
 const Home = () => {
@@ -125,6 +136,13 @@ const Home = () => {
     }
     return <FaArrowDown />;
   };
+
+
+  // toggle button
+  /* const [expand, setExpand] = useState(false);
+  const toggleAcordion = () => {
+    setExpand((prev) => !prev);
+  }; */
 
   return (
     <div className="h_grid">
@@ -241,27 +259,44 @@ const Home = () => {
       </div>
       
       <div className="h_content">
-
         <div className="h_content_filter">
           {Object.keys((filterParam)).map((category) => 
-            <div key={category}>
-              <div className="h_content_filter_category">
-              <h2 >{category}</h2>
-              <span><KeyboardArrowDownIcon /></span>
-            </div>
-              {filterParam[category].map((item) => (
-                <div className="h_content_filter_span">
-                  <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />
-                  <span>{item}</span>
-                </div>
+            <Accordion 
+              style={{ width: 320 }} 
+              >
+              <div key={category}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={category}
+                 /*  IconButtonProps={{
+                    onClick: toggleAcordion
+                  }} */
+                >
+                  <div className="h_content_filter_category">
+                    <h3>
+                      {category}
+                    </h3>
+                    {/* <span><KeyboardArrowDownIcon /></span> */}
+                  </div>
+                </AccordionSummary>
+             
+              {filterParam[category].map((item, index) => ( 
+                <AccordionDetails>               
+                  <div key={index} className="h_content_filter_span">
+                    <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />
+                    <span>{item}</span>
+                  </div>
+                </AccordionDetails>
               ))}
-            </div>
+              </div>
+            </Accordion>
           )}
         </div>
+        
 
-        <div>
+        <div className="h_content_tweet">
           {search(_DATA.currentData()).map((tweet) => (
-            <div className="h_content_tweet" key={tweet._id} >
+            <div className="h_content_tweet_main" key={tweet._id} >
               <div className="h_content_tweet_avatar">
                 <Avatar
                   src = {tweet.university_avi_link}
@@ -285,6 +320,21 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
+
+                <img 
+                  src="https://www.simplilearn.com/ice9/free_resources_article_thumb/IBM_Leading_in_AI_Innovations_What_the_Company_is_Working_on_Now.jpg" 
+                  alt="" 
+                  width="150" 
+                  height="100"
+                />
+                
+                <div className="h_content_tweet_footer">
+                  <ChatBubbleOutlineIcon fontSize="small" />
+                  <RepeatIcon fontSize="small" />
+                  <FavoriteBorderIcon fontSize="small" />
+                  <PublishIcon fontSize="small" />
+                </div>
+                 
               </div>
             </div>
           ))}

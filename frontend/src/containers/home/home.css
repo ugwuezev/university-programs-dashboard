@@ -9,7 +9,8 @@
       "h_search h_search h_search h-search h_search"
       "h_content h_content h_content h_content h_content"
       "h_footer h_footer h_footer h_footer h_footer";
-
+      
+  min-width: 700px;
 }
 
 .h_navbar {
@@ -21,8 +22,8 @@
 }
 
 .h_search {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   margin-top: 10px;
   justify-content: space-around;
   width: 100%;
@@ -34,16 +35,16 @@
   align-items: flex-start;
   margin-bottom: 20px;
   justify-content: space-evenly;
-  width: 40%;
+  width: 100%;
 }
 
 .h_search_searchbar_sort {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
   margin-bottom: 20px;
   margin-left: 0px;
-  width: 60%;
+  width: 80%;
 }
 
 .h_search_input {
@@ -59,16 +60,23 @@
 
 .h_content {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 8 px;
   margin-left: 10px;
   margin-right: 10px;
+  width: 100%
 }
 
 .h_content_filter {
-  padding: 25px;
   display: grid;
   font-size: 18px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.h_content_tweet {
+  margin: 0%;
+  width: 100%;
 }
 
 .h_content_filter_category {
@@ -76,8 +84,6 @@
   display: flex;
   flex-direction: start;
   justify-content: space-between;
-  margin-right: 25%;
-  margin-left: 10%;
 }
 
 .h_content_filter_span {
@@ -90,13 +96,16 @@
   margin-right: 5px;
 }
 
-.h_content_tweet {
+
+.h_content_tweet_main {
   display: flex;
   align-items: flex-start;
   padding-bottom: 10px;
   border: 1px solid #CFD9DE;
   margin-bottom: 0px;
-  margin-right: 20px;
+  justify-content: center;
+  margin-left: 0px;
+  width: 80%;
 }
 
 .h_content_tweet_avatar {
@@ -108,8 +117,17 @@
   padding: 10px;
 }
 
+.h_content_tweet_body > img {
+  border-radius: 20px;
+  margin-top: 10px;
+}
 .h_content_tweet_header {
   color: black;
+}
+
+.h_content_tweet_headerText {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .h_content_tweet_headerText > h3 {
@@ -121,9 +139,12 @@
   font-weight: 600;
   font-size: 17px;
   color: gray;
+  margin-left: 5px;
 }
 
 .h_content_tweet__headerDescription {
+  display: flex;
+  justify-content: flex-start;
   margin-bottom: 10px;
   font-size: 15px;
   border-bottom: 5px solid red;
@@ -143,6 +164,14 @@
   font-size: 20px;
 }
  */
+
+
+ .h_content_tweet_footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+ }
+
 
 .h_footer {
   justify-content: center;
