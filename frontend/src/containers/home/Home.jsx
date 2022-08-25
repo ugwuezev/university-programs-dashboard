@@ -156,16 +156,8 @@ const Home = () => {
       </div>
       
       <div className="h_search">
-        <div className="h_search_filter">
-          <div>
-            <Button 
-              variant="contained"
-            >
-              Clear Filter
-            </Button>
-           
-          </div>
-         
+        <div className="h_search_bookmark">
+          <h2>Bookmarks</h2>
         </div>
             
         <div className="h_search_searchbar_sort">
@@ -256,44 +248,28 @@ const Home = () => {
 
 
         </div>
+
+        <div className="h_search_filter">
+          <div>
+            <Button 
+              variant="contained"
+            >
+              Clear Filter
+            </Button>
+           
+          </div>
+         
+        </div>
+
       </div>
       
       <div className="h_content">
-        <div className="h_content_filter">
-          {Object.keys((filterParam)).map((category) => 
-            <Accordion 
-              style={{ width: 320 }} 
-              >
-              <div key={category}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={category}
-                 /*  IconButtonProps={{
-                    onClick: toggleAcordion
-                  }} */
-                >
-                  <div className="h_content_filter_category">
-                    <h3>
-                      {category}
-                    </h3>
-                    {/* <span><KeyboardArrowDownIcon /></span> */}
-                  </div>
-                </AccordionSummary>
-             
-              {filterParam[category].map((item, index) => ( 
-                <AccordionDetails>               
-                  <div key={index} className="h_content_filter_span">
-                    <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />
-                    <span>{item}</span>
-                  </div>
-                </AccordionDetails>
-              ))}
-              </div>
-            </Accordion>
-          )}
+
+
+        <div className="h_content_bookmark">
+          <h4>List of saved tweets here</h4>
         </div>
         
-
         <div className="h_content_tweet">
           {search(_DATA.currentData()).map((tweet) => (
             <div className="h_content_tweet_main" key={tweet._id} >
@@ -339,6 +315,41 @@ const Home = () => {
             </div>
           ))}
         </div>
+
+        <div className="h_content_filter">
+          {Object.keys((filterParam)).map((category) => 
+            <Accordion 
+              style={{ width: 320 }} 
+              >
+              <div key={category}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={category}
+                 /*  IconButtonProps={{
+                    onClick: toggleAcordion
+                  }} */
+                >
+                  <div className="h_content_filter_category">
+                    <h3>
+                      {category}
+                    </h3>
+                    {/* <span><KeyboardArrowDownIcon /></span> */}
+                  </div>
+                </AccordionSummary>
+             
+              {filterParam[category].map((item, index) => ( 
+                <AccordionDetails>               
+                  <div key={index} className="h_content_filter_span">
+                    <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />
+                    <span>{item}</span>
+                  </div>
+                </AccordionDetails>
+              ))}
+              </div>
+            </Accordion>
+          )}
+        </div>
+
       </div>
 
       <div className="h_pagination">
