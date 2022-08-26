@@ -52,7 +52,9 @@ const Navbar = () => {
         <div className="ibm__navbar">
             <div className="ibm__navbar-links">
                 <div className="ibm__navbar-links_logo">
-                    <img src={logo} alt="logo" />
+                    <Link to={'/'}>
+                        <img src={logo} alt="logo" />
+                    </Link>
                 </div>
                 <div className="ibm__navbar-links_container">
 
