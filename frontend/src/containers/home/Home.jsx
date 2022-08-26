@@ -156,8 +156,15 @@ const Home = () => {
       </div>
       
       <div className="h_search">
-        <div className="h_search_bookmark">
-          <h2>Bookmarks</h2>
+
+        <div className="h_search_filter">
+          <div>
+            <Button 
+              variant="contained"
+            >
+              Clear Filter
+            </Button>
+          </div>
         </div>
             
         <div className="h_search_searchbar_sort">
@@ -191,84 +198,43 @@ const Home = () => {
             </IconButton>
           </Paper>
         </div>
-  
-
-    {/* 
-          <div>
-          <TextField 
-            id="outlined-basic" 
-            label="University/Keyword"
-            variant="outlined"
-            onChange={(e) => setQ(e.target.value)}
-            value={q}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                    <SearchIcon />
-                </InputAdornment>
-              )
-            }}
-          />
-         </div> */}
-
-
-{/* 
-            <input
-              id="input-with-icon-adornment"
-              className="h_search_input"
-              placeholder="Search by University/Keyword"
-              onChange={(e) => setQ(e.target.value)}
-              value={q}
-              endAdornment = {
-                <InputAdornment position="end">
-                    <SearchIcon />
-                </InputAdornment>
-              }
-            /> */}
-
-          
-{/* 
-          <div>
-            <Button 
-              variant="contained" 
-              onClick={sortByTime}
-            >
-              Sort
-              {sorted.sorted === "name"
-              ? renderArrow()
-              : null}
-            </Button>
-            
-          </div> */}
-
-
-         {/*  <div>
-            <MyButton path="/" name="Sort" />
-          </div> */}
-
 
         </div>
-
-        <div className="h_search_filter">
-          <div>
-            <Button 
-              variant="contained"
-            >
-              Clear Filter
-            </Button>
-           
-          </div>
-         
+        <div className="h_search_bookmark">
+          <h2>Bookmarks</h2>
         </div>
 
+        
       </div>
       
       <div className="h_content">
 
+          <div className="h_content_filter">
+           
+            {Object.keys((filterParam)).map(category => 
+              <div key={category}>
+                <Accordion>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />} >
+                    <div className="h_content_filter_category">
+                      <h3>{category}</h3>
+                    </div>
+                  </AccordionSummary>
 
-        <div className="h_content_bookmark">
-          <h4>List of saved tweets here</h4>
-        </div>
+                {filterParam[category].map(item => (
+                  <AccordionDetails>
+                    <div className="h_content_filter_span">
+                      <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />  
+                      <span>{item}</span>
+                    </div>
+                  </AccordionDetails>
+                ))}
+
+                </Accordion>
+              </div>
+            )}
+
+          </div>
+
         
         <div className="h_content_tweet">
           {search(_DATA.currentData()).map((tweet) => (
@@ -316,38 +282,10 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="h_content_filter">
-          {Object.keys((filterParam)).map((category) => 
-            <Accordion 
-              style={{ width: 320 }} 
-              >
-              <div key={category}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={category}
-                 /*  IconButtonProps={{
-                    onClick: toggleAcordion
-                  }} */
-                >
-                  <div className="h_content_filter_category">
-                    <h3>
-                      {category}
-                    </h3>
-                    {/* <span><KeyboardArrowDownIcon /></span> */}
-                  </div>
-                </AccordionSummary>
-             
-              {filterParam[category].map((item, index) => ( 
-                <AccordionDetails>               
-                  <div key={index} className="h_content_filter_span">
-                    <input className="h_content-filter_input" name={category} value={item} type="radio" onClick={()=> filterFunction(item)} />
-                    <span>{item}</span>
-                  </div>
-                </AccordionDetails>
-              ))}
-              </div>
-            </Accordion>
-          )}
+        <div className="h_content_bookmark">
+          <h4>
+            List of Bookmarks
+          </h4>
         </div>
 
       </div>

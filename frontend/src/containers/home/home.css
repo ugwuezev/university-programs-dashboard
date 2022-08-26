@@ -78,9 +78,7 @@
 }
 
 .h_content_filter {
-  display: grid;
   font-size: 18px;
-  justify-content: space-evenly;
 }
 
 .h_content_filter_category {
@@ -199,6 +197,7 @@
   background-color: var(--primary);
   align-content: center;
 }
+
 
 .h_sort_btn:hover {
   padding: 6px 18px;
