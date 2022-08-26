@@ -28,6 +28,7 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
 
+import moment from 'moment';
 
 const Home = () => {
 
@@ -46,10 +47,10 @@ const Home = () => {
     const keyword_apiUrl = `http://localhost:5000/keywords`;
 
     const fetchTweets = async () => {
-    const res = await axios.get(tweet_apiUrl);
-    setTweets(res.data);
-    setFilterItems(res.data);
-    setSortItems(res.data);
+      const res = await axios.get(tweet_apiUrl);
+      setTweets(res.data);
+      setFilterItems(res.data);
+      setSortItems(res.data);
     }
 
     const fetchUniversities = async () => {
@@ -103,7 +104,26 @@ const Home = () => {
     Keyword: ["All", ...new Set(keywords.map(keyword => keyword.name))],
     Time: ["All", "Past 24 Hours", "Past Week", "Past Month", "Past Year"]
   };
+  
+  // filtering date
+  const dateItems = (filterItem) => {
+    const currentDate = moment();
+    const item =  filterItem.time_posted.split("T")[0];
 
+    if (moment(item).isSame(currentDate, 'day')) {
+        return "Past 24 Hours"
+    } else if (moment(item).isSame(currentDate, 'week')) {
+        return "Past Week"
+    } else if (moment(item).isSame(currentDate, 'month')) {
+        return "Past Month"
+    } else if (moment(item).isSame(currentDate, 'year')) {
+        return "Past Year"
+    } else {
+        return "All Time"
+    }
+};
+  
+  // filter function
   const filterFunction = (button_name) => {
 
     if (button_name === "" || button_name === "All") {
@@ -111,7 +131,11 @@ const Home = () => {
       return;
     } 
     else {
-      const filteredData = tweets.filter((filterItem) => filterItem.university_name === button_name || filterItem.tweet_content.toLowerCase().includes(button_name.toLowerCase()));
+      const filteredData = tweets.filter((filterItem) => 
+        filterItem.university_name === button_name || 
+        filterItem.tweet_content.toLowerCase().includes(button_name.toLowerCase()) ||
+        dateItems(filterItem) === button_name 
+        );
       setFilterItems(filteredData);
       return;
     }
@@ -119,15 +143,15 @@ const Home = () => {
   };
 
   // sort function
-  const sortByTime = () => {
+  const sortByDate = () => {
     sortItems.sort((sortItemA, sortItemB) => {
       if (sorted.reversed) {
-        return sortItemB.full_name.localeCompare(sortItemA.time_posted);
+        return sortItemB.time_posted.localeCompare(sortItemA.time_posted);
       }
-      return sortItemA.full_name.localeCompare(sortItemB.time_posted);
+      return sortItemA.time_posted.localeCompare(sortItemB.time_posted);
     });
     setTweets(sortItems);
-    setSorted({ sorted: "name", reversed: !sorted.reversed });
+    setSorted({ sorted: "date", reversed: !sorted.reversed });
   };
 
   const renderArrow = () => {
@@ -189,10 +213,10 @@ const Home = () => {
               color="primary" 
               sx={{ p: '10px' }} 
               aria-label="directions"
-              onClick={sortByTime}
+              onClick={sortByDate}
             >
               <SortIcon />
-              {sorted.sorted === "name"
+              {sorted.sorted === "date"
               ? renderArrow()
               : null}
             </IconButton>
@@ -252,12 +276,12 @@ const Home = () => {
                     <h3>
                       {tweet.university_name} 
                       <span className="h_content_tweet_headerSpecial">
-                        @{tweet.tweeter_handle} {tweet.time_posted}
+                        @{tweet.tweeter_handle} {tweet.time_posted.split("T")[0]}
                       </span>
                     </h3>
                   </div>
                   <div className="h_content_tweet_headerDescription">
-                    <p>
+                    <p text-align="left">
                       {tweet.tweet_content}
                     </p>
                   </div>

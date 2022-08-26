@@ -4,7 +4,7 @@ import { Navbar, Footer } from '../../components';
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 
-const Test = () => {
+const Test2 = () => {
   useEffect(() => {
     document.title = "Matching Tweets";
   }, []);
@@ -34,4 +34,4 @@ const Test = () => {
   );
 }
 
-export default Test;
+export default Test2;
