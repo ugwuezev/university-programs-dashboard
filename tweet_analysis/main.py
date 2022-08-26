@@ -3,7 +3,7 @@ import db_connection
 import auth
 import data
 
-def KeywordMatching():
+def KeywordMatching(iteration):
 
     client = db_connection.DatabaseConnection()
     db = client.ibmDB
@@ -22,7 +22,7 @@ def KeywordMatching():
     #string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(iteration)}
     # first run: 10 & second: 10, 21, 1 & Third: 21, 32, 1
     
-    string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(21,32,1)}
+    string_dict = {universityTwitterHandles[i]: universityTwitterNames[i] for i in range(iteration[0], iteration[1], iteration[2])}
 
     # keyword matching algorithm
     for keyword in keywordList:
@@ -45,14 +45,27 @@ def KeywordMatching():
 
             # stores result in the database if there is a match
             for tweet in tweets:
+                
+                date = tweet.created_at.split("T")
+                url = "https://www.twitter.com/" + tweet.user.screen_name + "/status/" + tweet.id_str
+                
                 document = {
                     "university_avi_link": university_avi_link,
                     "university_name": university_twitter_name,
-                    "tweeter_handle":tweet.user.screen_name,
-                    "time_posted":tweet.created_at,
-                    "tweet_content":tweet.full_text
+                    "tweeter_handle": tweet.user.screen_name,
+                    "time_posted": date[0],
+                    "tweet_content": tweet.full_text,
+                    "retweet_count": tweet.retweet_count,
+                    "likes_count": tweet.favorite_count,
+                    "tweet_url": url
                     }
+                   
                 tweet_collection.insert_one(document)
 
-KeywordMatching()
+# Tests
+cycle1 = [0,10,1]
+cycle2 = [10,21,1]
+cycle3 = [21,32,1]
+
+KeywordMatching(cycle1)
 print("Done")
