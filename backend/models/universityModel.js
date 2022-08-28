@@ -22,11 +22,13 @@ const universitySchema = mongoose.Schema(
     {
         twitter_handle: {
             type: String,
+            required: true,
         }
     },
     {
         twitter_avi_link: {
             type: String,
+            required: true,
         }
     },
 )

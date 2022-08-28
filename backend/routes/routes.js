@@ -4,15 +4,15 @@ const router = express.Router();
 const { loginUser, registerUser, getMe } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware')
 const { getTweets} = require('../controllers/tweetController');
-const { getUniversities} = require('../controllers/universityController');
-const { getKeywords} = require('../controllers/keywordController');
+const { getUniversities, addUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
+const { getKeywords, addKeyword, updateKeyword, deleteKeyword } = require('../controllers/keywordController');
 const { getTests } = require('../controllers/testController');
 
 // Tests
 router.get('/tests', getTests);
 
 router.get('/', (req, res) => {
-    res.status(200).json({ message: "This would be modified to contain tweets" });
+    res.status(200).json({ message: "This is the default page" });
     });
 
 router.get('/test', (req, res) => {
@@ -27,13 +27,17 @@ router.get('/me', protect, getMe)
 
 router.get('/tweets', getTweets);
 
+// university routes
 router.get('/universities', getUniversities);
+router.post('/universities', addUniversity);
+router.put('/universities:id', updateUniversity);
+router.delete('/universities:id', deleteUniversity);
 
+//keyword routes
 router.get('/keywords', getKeywords);
-
-
-//router.get('/keywords', searchKeyword);
-// router.get('/tweets', searchUniversity);
+router.post('/keywords', addKeyword);
+router.put('/keyword:id', updateKeyword);
+router.delete('/keyword:id', deleteKeyword);
 
 
 // will match any other path

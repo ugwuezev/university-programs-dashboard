@@ -46,14 +46,15 @@ def KeywordMatching(iteration):
             # stores result in the database if there is a match
             for tweet in tweets:
                 
-                date = tweet.created_at.split("T")
+                #date = tweet.created_at.split("T")
                 url = "https://www.twitter.com/" + tweet.user.screen_name + "/status/" + tweet.id_str
                 
                 document = {
                     "university_avi_link": university_avi_link,
                     "university_name": university_twitter_name,
                     "tweeter_handle": tweet.user.screen_name,
-                    "time_posted": date[0],
+                    #"time_posted": date[0],
+                    "time_posted": tweet.created_at,
                     "tweet_content": tweet.full_text,
                     "retweet_count": tweet.retweet_count,
                     "likes_count": tweet.favorite_count,
