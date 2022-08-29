@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 
 const universitySchema = mongoose.Schema(
-    {
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
-    },
+    
     {
         full_name: {
             type: String,
