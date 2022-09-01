@@ -22,6 +22,9 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SortIcon from '@mui/icons-material/Sort';
 
+//modal
+import { AddUniversityModal, EditUniversityModal} from '../../components';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,14 +46,29 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
 const UniversityTable = ({ setData, data }) => {
+
+  //modal set values - for both add and edit
+  const [toggleAdd, setToggleAdd] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
+
+  //modal function - add university
+  const addUniversity = () => {
+    setToggleAdd(true)
+  };
   
+  //modal function - edit university
+  const editUniversity = () => {
+    setToggleEdit(true)
+  };
+
   // handling pagination
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [universities, setUniversities] = useState(data);
-  const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
+  const [sorted, setSorted] = useState({ sorted: "id", reversed: false })
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -79,8 +97,6 @@ const UniversityTable = ({ setData, data }) => {
       });
     });
 
-    //console.log(data);
-    //console.log(searchResult, "searchResult");
     setFilteredData(searchResult);
   }
 
@@ -158,7 +174,9 @@ const UniversityTable = ({ setData, data }) => {
           */}
 
           <div className="ut_addnew">  
-            <BigButton path="/universities" name="Add New University" />
+            <BigButton
+              onClick={addUniversity} 
+              name="Add New University" />
           </div>
         </span>
       
@@ -227,14 +245,14 @@ const UniversityTable = ({ setData, data }) => {
                           sx={{ width: 70, height: 70}}
                         />
                   </StyledTableCell>
-                  <StyledTableCell align="left">
+                  <StyledTableCell align="left">h
                     {item.twitter_name}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.twitter_handle}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                  <Button>Edit</Button>
+                  <Button onClick={editUniversity}>Edit</Button>
                   <Button>Delete</Button>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -252,7 +270,8 @@ const UniversityTable = ({ setData, data }) => {
           />
         </TableContainer>
     </div>
-
+    <AddUniversityModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewUniversity={addUniversity} />
+    <EditUniversityModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateUniversityDetails={editUniversity} />
     </div>
   );
 };

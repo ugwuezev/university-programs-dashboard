@@ -12,7 +12,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import "./table.css";
-import { SmallButton } from '../../components';
+import { BigButton } from '../../components';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -21,6 +21,8 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SortIcon from '@mui/icons-material/Sort';
 
+//modal
+import { AddKeywordModal, EditKeywordModal } from '../../components';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,6 +52,19 @@ const KeywordTable = ({ setData, data }) => {
   const [keywords, setKeywords] = useState(data);
   const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
 
+  //modal set values - for both add and edit
+  const [toggleAdd, setToggleAdd] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
+ 
+  //modal function - add keyword
+  const addKeyword = () => {
+    setToggleAdd(true)
+  };
+
+   //modal function - edit keyword
+  const editKeyword = () => {
+    setToggleEdit(true)
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -154,14 +169,12 @@ const KeywordTable = ({ setData, data }) => {
          */}
 
           <div className="kt_addnew">
-            <input
-              className="kt_search_input"
-              placeholder="Add New Keyword"
+            <BigButton
+              onClick={addKeyword}
+              name="Add New Keyword"
             />
-            <span className="kt_button" >
-              <SmallButton path="/keywords" name="Add" />
-            </span>
           </div>
+
         </span>
       </div>
 
@@ -204,7 +217,7 @@ const KeywordTable = ({ setData, data }) => {
                     {item.name}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    <Button>Edit</Button>
+                    <Button onClick={editKeyword}>Edit</Button>
                     <Button>Delete</Button>
                   </StyledTableCell>
                   
@@ -223,6 +236,8 @@ const KeywordTable = ({ setData, data }) => {
           />
         </TableContainer>
       </div>
+      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addKeyword} />
+      <EditKeywordModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={editKeyword} />
     </div>
   );
 };

@@ -4,8 +4,8 @@ const router = express.Router();
 const { loginUser, registerUser, getMe } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware')
 const { getTweets} = require('../controllers/tweetController');
-const { getUniversities, addUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
-const { getKeywords, addKeyword, updateKeyword, deleteKeyword } = require('../controllers/keywordController');
+const { addUniversity, getUniversities, getUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
+const { getKeywords, getKeyword, addKeyword, updateKeyword, deleteKeyword } = require('../controllers/keywordController');
 const { getTests } = require('../controllers/testController');
 
 // Tests
@@ -28,16 +28,18 @@ router.get('/me', protect, getMe)
 router.get('/tweets', getTweets);
 
 // university routes
-router.get('/universities', getUniversities);
 router.post('/universities', addUniversity);
-router.put('/universities:id', updateUniversity);
-router.delete('/universities:id', deleteUniversity);
+router.get('/universities', getUniversities);
+router.get('/universities/:_id', getUniversity);
+router.put('/universities/:_id', updateUniversity);
+router.delete('/universities/:_id', deleteUniversity);
 
 //keyword routes
-router.get('/keywords', getKeywords);
 router.post('/keywords', addKeyword);
-router.put('/keyword:id', updateKeyword);
-router.delete('/keyword:id', deleteKeyword);
+router.get('/keywords', getKeywords);
+router.get('/keywords/:_id', getKeyword);
+router.put('/keywords/:_id', updateKeyword);
+router.delete('/keywords/:_id', deleteKeyword);
 
 
 // will match any other path

@@ -10,6 +10,19 @@ const getKeywords = asyncHandler(async (req, res) => {
 })
 
 
+// query to get keyword by id
+const getKeyword= asyncHandler(async (req, res) => {
+    const keyword = await Keyword.findById(req.params._id)
+
+    if (!keyword) {
+        res.status(400)
+        throw new Error("Keyword not found")
+    }
+
+    res.status(200).json(keyword);
+})
+
+
 // query to add a new keyword
 const addKeyword = asyncHandler(async (req, res) => {
     if (!req.body.name) {
@@ -58,6 +71,7 @@ const deleteKeyword = asyncHandler(async (req, res) => {
 
 module.exports = { 
     getKeywords,
+    getKeyword,
     addKeyword,
     updateKeyword,
     deleteKeyword,

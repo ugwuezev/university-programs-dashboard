@@ -2,12 +2,7 @@
 const mongoose = require('mongoose');
 
 const tweetModel = mongoose.Schema(
-    {
-        tweet_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
-    },
+    
     {
         university_avi_link: {
             type: String,

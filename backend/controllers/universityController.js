@@ -10,6 +10,19 @@ const getUniversities = asyncHandler(async (req, res) => {
 })
 
 
+// query to get university by id
+const getUniversity= asyncHandler(async (req, res) => {
+    const university = await University.findById(req.params._id)
+
+    if (!university) {
+        res.status(400)
+        throw new Error("University not found")
+    }
+
+    res.status(200).json(university);
+})
+
+
 // query to add a new university
 const addUniversity = asyncHandler(async (req, res) => {
     if (!req.body.full_name) {
@@ -77,6 +90,7 @@ const deleteUniversity = asyncHandler(async (req, res) => {
 
 module.exports = { 
     getUniversities,
+    getUniversity,
     addUniversity,
     updateUniversity,
     deleteUniversity,
