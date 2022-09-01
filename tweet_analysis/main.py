@@ -68,5 +68,5 @@ cycle1 = [0,10,1]
 cycle2 = [10,21,1]
 cycle3 = [21,32,1]
 
-KeywordMatching(cycle1)
+KeywordMatching(cycle3)
 print("Done")
