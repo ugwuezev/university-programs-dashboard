@@ -56,15 +56,42 @@ const KeywordTable = ({ setData, data }) => {
   const [toggleAdd, setToggleAdd] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
  
-  //modal function - add keyword
+  //modal function - add keyword toggle
   const addKeyword = () => {
     setToggleAdd(true)
   };
 
-   //modal function - edit keyword
+   //modal function - edit keyword toggle
   const editKeyword = () => {
     setToggleEdit(true)
   };
+
+  //modal function - adding new keyword to the database
+  const addNewKeyword = async(data) => {
+    //console.log(data);
+    //code here to add new keyword to database
+    const addUrl = `http://localhost:5000/keywords`;
+
+    await axios.post(addUrl, {
+      name: data.name,
+    }); 
+
+    setToggleAdd(false);
+  };
+
+  //modal function - edit and update the keyword details
+  const updateKeywordDetails = async(data) => {
+    //console.log(data);
+    //code here to update keyword details
+    const editUrl = `http://localhost:5000/keywords/:_id`;
+
+    await axios.put(editUrl, {
+      name: data.name,
+    });
+
+    setToggleEdit(false);
+  };
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -236,8 +263,8 @@ const KeywordTable = ({ setData, data }) => {
           />
         </TableContainer>
       </div>
-      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addKeyword} />
-      <EditKeywordModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={editKeyword} />
+      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addNewKeyword} />
+      <EditKeywordModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={updateKeywordDetails} />
     </div>
   );
 };

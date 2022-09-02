@@ -24,7 +24,7 @@ const getUniversity= asyncHandler(async (req, res) => {
 
 
 // query to add a new university
-const addUniversity = asyncHandler(async (req, res) => {
+const addUniversity = asyncHandler(async(req, res) => {
     if (!req.body.full_name) {
         res.status(400)
         throw new Error("Please add the name of the university")
@@ -37,20 +37,27 @@ const addUniversity = asyncHandler(async (req, res) => {
 
     if (!req.body.twitter_handle) {
         res.status(400)
-        throw new Error("Please add the university twitter handle without the @ sign")
+        throw new Error("Please add the university twitter handle together with the @ sign")
     }
 
     if (!req.body.twitter_avi_link) {
         res.status(400)
         throw new Error("Please add the link to the university profile picture")
     }
+    
+    // parameters
+    const full_name = req.body.full_name;
+    const twitter_name = req.body.twitter_name;
+    const twitter_handle = req.body.twitter_handle;
+    const twitter_avi_link = req.body.twitter_avi_link;
 
-    const university = await University.create({
-        full_name: req.body.full_name,
-        twitter_name: req.body.twitter_name,
-        twitter_handle: req.body.twitter_handle,
-        twitter_avi_link: req.body.twitter_avi_link,
-    })
+    dataObject = {full_name, twitter_name, twitter_handle, twitter_avi_link};
+
+    /* dataObject = {"full_name": full_name, "twitter_name":twitter_name, "twitter_handle":twitter_handle, "twitter_avi_link":twitter_avi_link};
+    console.log(dataObject) */
+
+    const university = await University.create(dataObject);
+
     
     res.status(200).json(university)
 })
