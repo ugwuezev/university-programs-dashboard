@@ -21,8 +21,8 @@ const universitySchema = mongoose.Schema(
         twitter_avi_link: {
             type: String,
             required: true
-        },
-    },
+        }
+    }
 )
 
 module.exports = mongoose.model('University', universitySchema)

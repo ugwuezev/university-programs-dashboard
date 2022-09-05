@@ -10,13 +10,8 @@ import * as Yup from 'yup'
 
 const EditKeywordModal = ({ open, onClose, updateKeywordDetails, defaultText }) => {
 
-    //console.log(keywords);
-
-    //const [keyword, setKeyword] = useState(keywords);
-
     const defaultInputValues = {
         name: defaultText
-       
     };
     
     const [values, setValues] = useState(defaultInputValues);

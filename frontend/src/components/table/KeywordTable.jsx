@@ -46,6 +46,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const KeywordTable = ({ setData, data }) => {
 
+  // handling pagination
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -55,7 +56,8 @@ const KeywordTable = ({ setData, data }) => {
   //modal set values - for both add and edit
   const [toggleAdd, setToggleAdd] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
-  //const [toggleDelete, setToggleDelete] = useState(false);
+
+  //for default edit values
   const [defaultText, setDefaultText] = useState('');
   const [defaultId, setDefaultId] = useState('');
  
@@ -80,12 +82,12 @@ const KeywordTable = ({ setData, data }) => {
   //modal function - adding new keyword to the database
   const addNewKeyword = async(data) => {
     //console.log(data);
-    //code here to add new keyword to database
 
+    //code here to add new keyword to database
     await axios.post(process.env.REACT_APP_ALL_KEYWORDS, {
       name: data.name,
     });
-    
+
     fetchData();
     setToggleAdd(false);
   };
@@ -102,25 +104,22 @@ const KeywordTable = ({ setData, data }) => {
 
     fetchData();
     setToggleEdit(false);
-    
   };
 
   //modal function - delete the keyword details
   const deleteKeywordDetails = async(delete_Id) => {
     //console.log(data);
-    //code here to update keyword details
     console.log(delete_Id);
 
+    //code here to update keyword details
     await axios.delete(process.env.REACT_APP_KEYWORD_BY_ID, {
       data: { _id: delete_Id }
-      
     });
 
     fetchData();
 
     //setToggleDelete(false);
   };
-
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -291,8 +290,16 @@ const KeywordTable = ({ setData, data }) => {
           />
         </TableContainer>
       </div>
-      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addNewKeyword} />
-      <EditKeywordModal defaultText={defaultText} open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={updateKeywordDetails} keywords={data} />
+      <AddKeywordModal 
+        open={toggleAdd} 
+        onClose={() => setToggleAdd(false)} 
+        addNewKeyword={addNewKeyword} />
+      <EditKeywordModal 
+        defaultText={defaultText} 
+        open={toggleEdit} 
+        onClose={() => setToggleEdit(false)} 
+        updateKeywordDetails={updateKeywordDetails}  
+      />
     </div>
   );
 };

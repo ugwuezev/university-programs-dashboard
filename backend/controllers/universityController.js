@@ -65,16 +65,26 @@ const addUniversity = asyncHandler(async(req, res) => {
 
 // query to update university details
 const updateUniversity= asyncHandler(async (req, res) => {
-    const university = await University.findById(req.params._id)
+    console.log(req.body)
+
+    const university = await University.findById(req.body._id)
 
     if (!university) {
         res.status(400)
         throw new Error("University not found")
     }
 
-    const updatedUniversity = await University.findByIdAndUpdate(req.params._id, req.body, {
-        new: true,
-    })
+    const updatedUniversity = await University.findByIdAndUpdate(req.body._id, 
+        { 
+            full_name: req.body.full_name, 
+            twitter_name: req.body.twitter_name, 
+            twitter_handle: req.body.twitter_handle, 
+            twitter_avi_link: req.body.twitter_avi_link
+        }, 
+        {
+            new: true, 
+        }
+    )
 
     res.status(200).json(updatedUniversity);
 })
@@ -82,7 +92,7 @@ const updateUniversity= asyncHandler(async (req, res) => {
 
 // query to remove university
 const deleteUniversity = asyncHandler(async (req, res) => {
-    const university = await University.findById(req.params._id)
+    const university = await University.findById(req.body._id)
 
     if (!university) {
         res.status(400)
@@ -91,7 +101,7 @@ const deleteUniversity = asyncHandler(async (req, res) => {
 
     await university.remove()
 
-    res.status(200).json({ id: req.params._id })
+    res.status(200).json({ id: req.body._id })
 })
 
 

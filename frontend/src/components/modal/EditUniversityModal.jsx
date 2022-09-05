@@ -8,14 +8,14 @@ import * as Yup from 'yup'
 //import axios from "axios";
 
 
-const defaultInputValues = {
-    full_name: '',
-    twitter_name: '',
-    twitter_handle: '',
-    twitter_avi_link: ''
-};
+const EditUniversityModal = ({ open, onClose, updateUniversityDetails, defaultFullName, defaultTwitterName, defaultTwitterHandle, defaultTwitterAviLink }) => {
 
-const EditUniversityModal = ({ open, onClose, updateUniversityDetails }) => {
+    const defaultInputValues = {
+        full_name: defaultFullName,
+        twitter_name: defaultTwitterName,
+        twitter_handle: defaultTwitterHandle,
+        twitter_avi_link: defaultTwitterAviLink
+    };
 
     const [values, setValues] = useState(defaultInputValues);
 

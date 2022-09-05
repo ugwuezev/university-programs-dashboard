@@ -49,14 +49,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const UniversityTable = ({ setData, data }) => {
 
-  //modal set values - for both add and edit
-  const [toggleAdd, setToggleAdd] = useState(false);
-  const [toggleEdit, setToggleEdit] = useState(false);
-
-  // set values for adding university to the database
-  //const [newUniversity, setNewUniversity] = useState('');
-
-
   // handling pagination
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
@@ -64,6 +56,17 @@ const UniversityTable = ({ setData, data }) => {
   const [universities, setUniversities] = useState(data);
   const [sorted, setSorted] = useState({ sorted: "id", reversed: false })
 
+  //modal set values - for both add and edit
+  const [toggleAdd, setToggleAdd] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
+
+  // for default edti values
+  const [defaultId, setDefaultId] = useState('');
+  const [defaultFullName, setDefaultFullName] = useState('');
+  const [defaultTwitterName, setDefaultTwitterName] = useState('');
+  const [defaultTwitterHandle, setDefaultTwitterHandle] = useState('');
+  const [defaultTwitterAviLink, setDefaultTwitterAviLink] = useState('');
+  
   
   //modal function - add university
   const addUniversity = () => {
@@ -71,7 +74,13 @@ const UniversityTable = ({ setData, data }) => {
   };
   
   //modal function - edit university
-  const editUniversity = () => {
+  const editUniversity = (default_values) => {
+    setDefaultId(default_values._id);
+    setDefaultFullName(default_values.full_name);
+    setDefaultTwitterName(default_values.twitter_name);
+    setDefaultTwitterHandle(default_values.twitter_handle);
+    setDefaultTwitterAviLink(default_values.twitter_avi_link);
+
     setToggleEdit(true)
   };
 
@@ -81,7 +90,6 @@ const UniversityTable = ({ setData, data }) => {
     //console.log(data.twitter_name);
 
     //code here to add new university to database
-
     const baseUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
     await axios.post(baseUrl, {
       full_name: data.full_name,
@@ -89,20 +97,41 @@ const UniversityTable = ({ setData, data }) => {
       twitter_handle: data.twitter_handle,
       twitter_avi_link: data.twitter_avi_link,
     }); 
-   
-  
-    //setNewUniversity(res.data);
 
-
+    fetchData();
     setToggleAdd(false);
   };
 
-  //modal function - edit and update the keyword details
-  const updateUniversityDetails = () => {
-    //code here to update university details
+  //modal function - edit and update the university details
+  const updateUniversityDetails = async(data) => {
 
+    //code here to update university details
+    await axios.put(process.env.REACT_APP_UNIVERSITY_BY_ID, {
+      _id: defaultId, 
+      full_name: data.full_name,
+      twitter_name: data.twitter_name,
+      twitter_handle: data.twitter_handle,
+      twitter_avi_link: data.twitter_avi_link,
+    });
+
+    fetchData();
     setToggleEdit(false);
   }
+
+  //modal function - delete the university details
+  const deleteUniversityDetails = async(delete_Id) => {
+    //console.log(data);
+    console.log(delete_Id);
+
+    //code here to update university details
+    await axios.delete(process.env.REACT_APP_UNIVERSITY_BY_ID, {
+      data: { _id: delete_Id }
+    });
+
+    fetchData();
+
+    //setToggleDelete(false);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -289,8 +318,8 @@ const UniversityTable = ({ setData, data }) => {
                     {item.twitter_handle}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                  <Button onClick={editUniversity}>Edit</Button>
-                  <Button>Delete</Button>
+                  <Button onClick={() => editUniversity(item)}>Edit</Button>
+                  <Button onClick={()=> deleteUniversityDetails(item._id)}>Delete</Button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -307,8 +336,19 @@ const UniversityTable = ({ setData, data }) => {
           />
         </TableContainer>
     </div>
-    <AddUniversityModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewUniversity={addNewUniversity} />
-    <EditUniversityModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateUniversityDetails={updateUniversityDetails} />
+    <AddUniversityModal 
+      open={toggleAdd} 
+      onClose={() => setToggleAdd(false)} 
+      addNewUniversity={addNewUniversity} />
+    <EditUniversityModal 
+      defaultFullName={defaultFullName}
+      defaultTwitterName={defaultTwitterName}
+      defaultTwitterHandle={defaultTwitterHandle}
+      defaultTwitterAviLink={defaultTwitterAviLink}
+      open={toggleEdit} 
+      onClose={() => setToggleEdit(false)} 
+      updateUniversityDetails={updateUniversityDetails} 
+    />
     </div>
   );
 };
