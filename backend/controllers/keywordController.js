@@ -50,7 +50,7 @@ const updateKeyword= asyncHandler(async (req, res) => {
         throw new Error("Keyword not found")
     }
 
-    const updatedKeyword = await Keyword.findByIdAndUpdate(req.body._id, {name: req.body.name}, {
+    const updatedKeyword = await Keyword.findByIdAndUpdate(req.body._id, { name: req.body.name }, {
         new: true,
     })
     
