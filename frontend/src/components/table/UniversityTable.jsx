@@ -82,7 +82,7 @@ const UniversityTable = ({ setData, data }) => {
 
     //code here to add new university to database
 
-    const baseUrl = `http://localhost:5000/universities`;
+    const baseUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
     await axios.post(baseUrl, {
       full_name: data.full_name,
       twitter_name: data.twitter_name,
@@ -135,7 +135,7 @@ const UniversityTable = ({ setData, data }) => {
   }
 
   const fetchData = async () => {
-    const apiUrl = `http://localhost:5000/universities`;
+    const apiUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
     const res = await axios.get(apiUrl);
     setData(res.data);
     setUniversities(res.data);

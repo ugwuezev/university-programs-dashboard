@@ -4,9 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Signin, Register, Home, HeatMap, WordCloud, BarCharts, Keywords, Universities, Error, Test2 } from "./containers";
 import './App.css';
-
+//import dotenv from 'dotenv';
 
 const App = () => {
+
+  //dotenv.config();
   
   return (
     <>

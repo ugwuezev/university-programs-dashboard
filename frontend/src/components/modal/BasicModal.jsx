@@ -27,7 +27,7 @@ const BasicModal = ({ open, onClose, title, subTitle, content, onSubmit }) => {
                     >
                         Submit
                     </CommonButton>
-                    <CommonButton onClick={onClose}>Cancel</CommonButton>
+                    <CommonButton onClick={onClose}>Close</CommonButton>
                 </Box>
             </Box>
         </Modal>

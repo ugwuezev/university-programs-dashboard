@@ -22,6 +22,9 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //import Typography from '@mui/material/Typography';
 
+import { CommonButton } from '../../components';
+//import { Link } from 'react-router-dom';
+
 // for tweet details
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import RepeatIcon from "@mui/icons-material/Repeat";
@@ -42,9 +45,9 @@ const Home = () => {
 
   useEffect(() => {
     document.title = "Twitter Feed";
-    const tweet_apiUrl = `http://localhost:5000/tweets`;
-    const university_apiUrl = `http://localhost:5000/universities`;
-    const keyword_apiUrl = `http://localhost:5000/keywords`;
+    const tweet_apiUrl = process.env.REACT_APP_ALL_TWEETS;
+    const university_apiUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
+    const keyword_apiUrl = process.env.REACT_APP_ALL_KEYWORDS;
 
     const fetchTweets = async () => {
       const res = await axios.get(tweet_apiUrl);
@@ -225,7 +228,7 @@ const Home = () => {
 
         </div>
         <div className="h_search_bookmark">
-          <h2>Bookmarks</h2>
+          <h2>Saved Tweets</h2>
         </div>
 
         
@@ -259,7 +262,6 @@ const Home = () => {
 
           </div>
 
-        
         <div className="h_content_tweet">
           {search(_DATA.currentData()).map((tweet) => (
             <div className="h_content_tweet_main" key={tweet._id} >
@@ -295,10 +297,26 @@ const Home = () => {
                 />
                 
                 <div className="h_content_tweet_footer">
-                  <ChatBubbleOutlineIcon fontSize="small" />
-                  <RepeatIcon fontSize="small" />
-                  <FavoriteBorderIcon fontSize="small" />
-                  <PublishIcon fontSize="small" />
+                  <span>
+                    <ChatBubbleOutlineIcon fontSize="small" />
+                    200
+                  </span>
+                  <span>
+                    <RepeatIcon fontSize="small" />
+                    500
+                  </span>
+                  <span>
+                    <FavoriteBorderIcon fontSize="small" />
+                    2450
+                  </span>
+                  <span>
+                    <a href="https://twitter.com" target="_blank" rel="noreferrer">
+                      <PublishIcon fontSize="small" />
+                    </a>
+                  </span>
+                  <span>
+                    <CommonButton onClick={''}>Save</CommonButton>
+                  </span>
                 </div>
                  
               </div>
@@ -308,7 +326,7 @@ const Home = () => {
 
         <div className="h_content_bookmark">
           <h4>
-            List of Bookmarks
+            List of of saved tweets
           </h4>
         </div>
 
