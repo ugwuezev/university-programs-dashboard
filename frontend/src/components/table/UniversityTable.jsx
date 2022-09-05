@@ -53,6 +53,18 @@ const UniversityTable = ({ setData, data }) => {
   const [toggleAdd, setToggleAdd] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
 
+  // set values for adding university to the database
+  //const [newUniversity, setNewUniversity] = useState('');
+
+
+  // handling pagination
+  const [initPage, setPage] = useState(0);
+  const [searchResultPage, setSearchResultPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [universities, setUniversities] = useState(data);
+  const [sorted, setSorted] = useState({ sorted: "id", reversed: false })
+
+  
   //modal function - add university
   const addUniversity = () => {
     setToggleAdd(true)
@@ -63,12 +75,34 @@ const UniversityTable = ({ setData, data }) => {
     setToggleEdit(true)
   };
 
-  // handling pagination
-  const [initPage, setPage] = useState(0);
-  const [searchResultPage, setSearchResultPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [universities, setUniversities] = useState(data);
-  const [sorted, setSorted] = useState({ sorted: "id", reversed: false })
+   //modal function - adding new keyword to the database
+  const addNewUniversity = async(data) => {
+    //console.log(data);
+    //console.log(data.twitter_name);
+
+    //code here to add new university to database
+
+    const baseUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
+    await axios.post(baseUrl, {
+      full_name: data.full_name,
+      twitter_name: data.twitter_name,
+      twitter_handle: data.twitter_handle,
+      twitter_avi_link: data.twitter_avi_link,
+    }); 
+   
+  
+    //setNewUniversity(res.data);
+
+
+    setToggleAdd(false);
+  };
+
+  //modal function - edit and update the keyword details
+  const updateUniversityDetails = () => {
+    //code here to update university details
+
+    setToggleEdit(false);
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -101,7 +135,7 @@ const UniversityTable = ({ setData, data }) => {
   }
 
   const fetchData = async () => {
-    const apiUrl = `http://localhost:5000/universities`;
+    const apiUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
     const res = await axios.get(apiUrl);
     setData(res.data);
     setUniversities(res.data);
@@ -142,6 +176,8 @@ const UniversityTable = ({ setData, data }) => {
 		}
 		return <FaArrowDown />;
 	};
+
+  //console.log(data);
 
   return (
     <div className="ut_content">
@@ -228,6 +264,7 @@ const UniversityTable = ({ setData, data }) => {
             </TableHead>
 
             <TableBody>
+              
               {(q ? filteredData : data)
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item, index) => (
@@ -245,7 +282,7 @@ const UniversityTable = ({ setData, data }) => {
                           sx={{ width: 70, height: 70}}
                         />
                   </StyledTableCell>
-                  <StyledTableCell align="left">h
+                  <StyledTableCell align="left">
                     {item.twitter_name}
                   </StyledTableCell>
                   <StyledTableCell align="left">
@@ -270,8 +307,8 @@ const UniversityTable = ({ setData, data }) => {
           />
         </TableContainer>
     </div>
-    <AddUniversityModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewUniversity={addUniversity} />
-    <EditUniversityModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateUniversityDetails={editUniversity} />
+    <AddUniversityModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewUniversity={addNewUniversity} />
+    <EditUniversityModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateUniversityDetails={updateUniversityDetails} />
     </div>
   );
 };

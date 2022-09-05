@@ -13,7 +13,7 @@ const defaultInputValues = {
 };
 
 const AddKeywordModal = ({ open, onClose, addNewKeyword }) => {
-    
+
     const [values, setValues] = useState(defaultInputValues);
 
     const modalStyles = {

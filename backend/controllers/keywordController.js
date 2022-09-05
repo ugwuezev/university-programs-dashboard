@@ -40,24 +40,30 @@ const addKeyword = asyncHandler(async (req, res) => {
 
 // query to update keyword details
 const updateKeyword= asyncHandler(async (req, res) => {
-    const keyword = await Keyword.findById(req.params._id)
+    //console.log(req.params._id);
+    console.log(req.body);
+    
+    const keyword = await Keyword.findById(req.body._id)
 
     if (!keyword) {
         res.status(400)
         throw new Error("Keyword not found")
     }
 
-    const updatedKeyword = await Keyword.findByIdAndUpdate(req.params._id, req.body, {
+    const updatedKeyword = await Keyword.findByIdAndUpdate(req.body._id, {name: req.body.name}, {
         new: true,
     })
-
+    
+   
     res.status(200).json(updatedKeyword);
 })
 
 
 // query to remove keyword
 const deleteKeyword = asyncHandler(async (req, res) => {
-    const keyword = await Keyword.findById(req.params._id)
+    console.log(req.body);
+
+    const keyword = await Keyword.findById(req.body._id)
 
     if (!keyword) {
         res.status(400)
@@ -66,7 +72,7 @@ const deleteKeyword = asyncHandler(async (req, res) => {
 
     await keyword.remove()
 
-    res.status(200).json({ id: req.params._id })
+    res.status(200).json({ id: req.body._id })
 })
 
 module.exports = { 

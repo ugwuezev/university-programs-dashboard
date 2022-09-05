@@ -6,43 +6,36 @@ const tweetModel = mongoose.Schema(
     {
         university_avi_link: {
             type: String,
-        }
-    },
-    {
+        },
+
         university_name: {
             type: String,
-        }
-    },
-    {
+        },
+
         tweeter_handle: {
             type: String,
-        }
-    },
-    {
+        },
+    
         time_posted: {
             type: Date,
-        }
-    },
-    {
+        },
+    
         tweet_content: {
             type: String,
-        }
-    },
-    {
+        },
+   
         retweet_count: {
             type: String,
-        }
-    },
-    {
+        },
+    
         likes_count: {
             type: String,
-        }
-    },
-    {
+        },
+    
         tweet_url: {
             type: String,
-        }
-    }
+        },
+    },
     
 )
 

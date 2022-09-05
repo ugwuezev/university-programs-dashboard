@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:5000/universities';
+const baseUrl = process.env.REACT_APP_ALL_UNIVERSITIES;
 
 export const getUniversities = async (_id) => {
     _id = _id || '';

@@ -55,16 +55,72 @@ const KeywordTable = ({ setData, data }) => {
   //modal set values - for both add and edit
   const [toggleAdd, setToggleAdd] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
+  //const [toggleDelete, setToggleDelete] = useState(false);
+  const [defaultText, setDefaultText] = useState('');
+  const [defaultId, setDefaultId] = useState('');
  
-  //modal function - add keyword
+  //modal function - add keyword toggle
   const addKeyword = () => {
     setToggleAdd(true)
   };
 
-   //modal function - edit keyword
-  const editKeyword = () => {
+   //modal function - edit keyword toggle
+  const editKeyword = (default_text, default_Id) => {
+    setDefaultText(default_text);
+    setDefaultId(default_Id);
     setToggleEdit(true)
   };
+
+  //  //modal function - delete keyword toggle
+  //  const deleteKeyword = (default_Id) => {
+  //   setDefaultId(default_Id);
+  //   setToggleDelete(true)
+  // };
+
+  //modal function - adding new keyword to the database
+  const addNewKeyword = async(data) => {
+    //console.log(data);
+    //code here to add new keyword to database
+
+    await axios.post(process.env.REACT_APP_ALL_KEYWORDS, {
+      name: data.name,
+    });
+    
+    fetchData();
+    setToggleAdd(false);
+  };
+
+  //modal function - edit and update the keyword details
+  const updateKeywordDetails = async(data) => {
+    //console.log(data);
+    //code here to update keyword details
+
+    await axios.put(process.env.REACT_APP_KEYWORD_BY_ID, {
+      _id: defaultId, 
+      name: data.name,
+    });
+
+    fetchData();
+    setToggleEdit(false);
+    
+  };
+
+  //modal function - delete the keyword details
+  const deleteKeywordDetails = async(delete_Id) => {
+    //console.log(data);
+    //code here to update keyword details
+    console.log(delete_Id);
+
+    await axios.delete(process.env.REACT_APP_KEYWORD_BY_ID, {
+      data: { _id: delete_Id }
+      
+    });
+
+    fetchData();
+
+    //setToggleDelete(false);
+  };
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -97,8 +153,7 @@ const KeywordTable = ({ setData, data }) => {
   }
 
   const fetchData = async () => {
-    const apiUrl = `http://localhost:5000/keywords`;
-    const res = await axios.get(apiUrl);
+    const res = await axios.get(process.env.REACT_APP_ALL_KEYWORDS);
     setData(res.data);
     setKeywords(res.data);
   };
@@ -217,8 +272,8 @@ const KeywordTable = ({ setData, data }) => {
                     {item.name}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    <Button onClick={editKeyword}>Edit</Button>
-                    <Button>Delete</Button>
+                    <Button onClick={()=> editKeyword(item.name, item._id)}>Edit</Button>
+                    <Button onClick={()=> deleteKeywordDetails(item._id)}>Delete</Button>
                   </StyledTableCell>
                   
                 </StyledTableRow>
@@ -236,8 +291,8 @@ const KeywordTable = ({ setData, data }) => {
           />
         </TableContainer>
       </div>
-      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addKeyword} />
-      <EditKeywordModal open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={editKeyword} />
+      <AddKeywordModal open={toggleAdd} onClose={() => setToggleAdd(false)} addNewKeyword={addNewKeyword} />
+      <EditKeywordModal defaultText={defaultText} open={toggleEdit} onClose={() => setToggleEdit(false)} updateKeywordDetails={updateKeywordDetails} keywords={data} />
     </div>
   );
 };

@@ -5,26 +5,23 @@ const universitySchema = mongoose.Schema(
     {
         full_name: {
             type: String,
-            required: true,
-        }
-    },
-    {
+            required: true
+        },
+    
         twitter_name: {
             type: String,
-            required: true,
-        }
-    },
-    {
+            required: true
+        },
+
         twitter_handle: {
             type: String,
-            required: true,
-        }
-    },
-    {
+            required: true
+        },
+        
         twitter_avi_link: {
             type: String,
-            required: true,
-        }
+            required: true
+        },
     },
 )
 

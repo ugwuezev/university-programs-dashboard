@@ -39,7 +39,7 @@ const AddUniversityModal = ({ open, onClose, addNewUniversity }) => {
         twitter_name: Yup.string()
             .required('Twitter name is required'),
         twitter_handle: Yup.string()
-            .required('Twitter handle is required; do not include the @ symbol'),
+            .required('Twitter handle is required; include the @ symbol'),
         twitter_avi_link: Yup.string()
             .required('Twitter profile picture link is required'),
     });
@@ -54,10 +54,11 @@ const AddUniversityModal = ({ open, onClose, addNewUniversity }) => {
 
     const addUniversity = (data) => {
         addNewUniversity(data);
+        //console.log(data)
     };
 
     const handleChange = (value) => {
-        setValues(value)
+        setValues(value);
     };
 
     useEffect(() => {
