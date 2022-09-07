@@ -1,0 +1,73 @@
+
+[
+
+    {   
+        "university_avi_link":"https://pbs.twimg.com/profile_images/1433363936854880264/SO3O-Jle_400x400.png",
+        "university_name":"The University of Manchester",
+        "tweeter_handle":"BarnesNunn",
+        "time_posted":{"$date":{"$numberLong":"1658876400000"}},
+        "tweet_content":"RT @Arezou_nayebi: It was a great experience to participate in an innovation camp and hackathon at @CdtMinds, @unisouthampton in collaborat…",
+        "tweet_image": "https://pbs.twimg.com/media/FY1Ru20XwAAuHFt?format=jpg&name=small",
+        "tweet_url": "https://twitter.com/Arezou_nayebi/status/1553326725928431616?s=20&t=fNd64ZpIVCrSP1CUy7Dtfg"
+    },
+
+    {
+        "university_avi_link": "https://pbs.twimg.com/profile_images/1433363936854880264/SO3O-Jle_400x400.png",
+        "university_name": "The University of Manchester",
+        "tweeter_handle": "Arezou_nayebi",
+        "time_posted": {"$date":{"$numberLong":"1659176925000"}},
+        "tweet_content": "It was a great experience to participate in an innovation camp and hackathon at @CdtMinds, @unisouthampton in collaboration with @IBM and @OfficialUoM. \nLooking forward to having another great innovation camp next year 🤩\n#IBM #AI https://t.co/IAKuGoxcBN",
+        "tweet_image": "https://pbs.twimg.com/media/FY1Ru20XwAAuHFt?format=jpg&name=small",
+        "tweet_url": "https://twitter.com/Arezou_nayebi/status/1553326725928431616?s=20&t=HW_B3utISLtByGVB6Kesdg"
+    },
+
+    {   "university_avi_link": "https://pbs.twimg.com/profile_images/1480494808594632705/SWF1_0Kt_400x400.jpg",
+        "university_name":"University of Southampton",
+        "tweeter_handle":"BarnesNunn",
+        "time_posted":{"$date":{"$numberLong":"1659176925000"}},
+        "tweet_content":"RT @Arezou_nayebi: It was a great experience to participate in an innovation camp and hackathon at @CdtMinds, @unisouthampton in collaborat…",
+        "tweet_image": "https://pbs.twimg.com/media/FY1Ru20XwAAuHFt?format=jpg&name=small",
+        "tweet_url": "https://twitter.com/Arezou_nayebi/status/1553326725928431616?s=20&t=fNd64ZpIVCrSP1CUy7Dtfg"
+    },
+
+    {
+        "university_avi_link": "https://pbs.twimg.com/profile_images/1480494808594632705/SWF1_0Kt_400x400.jpg",
+        "university_name": "University of Southampton",
+        "tweeter_handle": "Arezou_nayebi",
+        "time_posted": {"$date":{"$numberLong":"1659176925000"}},
+        "tweet_content": "It was a great experience to participate in an innovation camp and hackathon at @CdtMinds, @unisouthampton in collaboration with @IBM and @OfficialUoM. \nLooking forward to having another great innovation camp next year 🤩\n#IBM #AI https://t.co/IAKuGoxcBN",
+        "tweet_image": "https://pbs.twimg.com/media/FY1Ru20XwAAuHFt?format=jpg&name=small",
+        "tweet_url": "https://twitter.com/Arezou_nayebi/status/1553326725928431616?s=20&t=HW_B3utISLtByGVB6Kesdg"
+    },
+
+    {
+        "university_avi_link": "https://pbs.twimg.com/profile_images/1055770897091649536/1qDq-m41_400x400.jpg",
+        "university_name": "University of Oxford",
+        "tweeter_handle": "america01x",
+        "time_posted": {"$date":{"$numberLong":"1660119955000"}},
+        "tweet_content":"all about #cloud @RedHat @IBM @googlecloud @UniofOxford https://t.co/6SxALS6VMS",
+        "tweet_image": "",
+        "tweet_url": "https://t.co/6SxALS6VMS"
+    },
+
+    {
+        "university_avi_link": "https://pbs.twimg.com/profile_images/875634893534904323/Alz7fmFM_400x400.jpg",
+        "university_name": "Cambridge University",
+        "tweeter_handle": "NFLObjectors",
+        "time_posted": {"$date":{"$numberLong":"1660244736000"}},
+        "tweet_content": "@Meta's AI program is obviously sentient. A successful Turning test.  Take that @MIT @Google @elonmusk @Cambridge_Uni @IBM @amazon",
+        "tweet_image": "",
+        "tweet_url": "https://twitter.com/NFLObjectors/status/1557805447666606087?s=20&t=6bCdBAkeUKuHcWDlOELK0Q"
+    },
+
+    {
+        "university_avi_link":"https://pbs.twimg.com/profile_images/1547949348322824196/EKdNE379_400x400.jpg",
+        "university_name":"University of Liverpool",
+        "tweeter_handle":"JanHacker9",
+        "time_posted":{"$date":{"$numberLong":"1660243872000"}},
+        "tweet_content":"#ELIZA @IBM @ComputerHistory @History #EDU \n@ARTEfr @POTUS #FreeAssange #AI \nThis will make you think about #ETHICS.\nRecommendation @LivUni @VaroufakisDE\n#PEACE #ArtificialIntelligence #Numbers #Reason|ing \n#Action #Delegate IT\nConversations with Eliza https://t.co/9tITrozu1V",
+        "tweet_image": "",
+        "tweet_url": ""
+    }
+
+]

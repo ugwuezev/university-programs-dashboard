@@ -24,11 +24,7 @@ const tweetModel = mongoose.Schema(
             type: String,
         },
    
-        retweet_count: {
-            type: String,
-        },
-    
-        likes_count: {
+        tweet_image: {
             type: String,
         },
     

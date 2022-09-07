@@ -29,6 +29,7 @@
   align-items: center;
   margin-left: 5%;
   margin-right: 5%;
+  column-gap: 2em;
   margin-bottom: 20px;
 }
 
@@ -67,6 +68,7 @@
   justify-content: space-evenly;
   margin-left: 5%;
   margin-right: 5%;
+  column-gap: 2em;
 }
 
 .h_content_bookmark {
@@ -100,7 +102,6 @@
   margin-right: 5px;
 }
 
-
 .h_content_tweet_main {
   display: flex;
   align-items: flex-start;
@@ -120,6 +121,10 @@
   flex: 1;
   padding: 10px;
 }
+
+/* .h_content_tweet_body > img[src=""] {
+  display: none;
+}; */
 
 .h_content_tweet_body > img {
   border-radius: 20px;

@@ -7,7 +7,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './wordcloud.css';
-import { Navbar, Footer, TagCloud } from '../../components';
+import { Navbar, Footer, TagCloud, KeywordCloud } from '../../components';
 
 
 const WordCloud = () => {
@@ -15,8 +15,7 @@ const WordCloud = () => {
   const [tweets, setTweets] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [keywords, setKeywords] = useState([]);
-  const [filterItems, setFilterItems] = useState(keywords);
-
+  const [filterItems, setFilterItems] = useState(tweets);
 
   useEffect(() => {
     document.title = "Word Cloud";
@@ -58,6 +57,7 @@ const WordCloud = () => {
   // filtering date
   const dateItems = (filterItem) => {
     const currentDate = moment();
+    //console.log(filterItem);
     const item =  filterItem.time_posted.split("T")[0];
 
     if (moment(item).isSame(currentDate, 'day')) {
@@ -77,11 +77,11 @@ const WordCloud = () => {
   const filterFunction = (button_name) => {
 
     if (button_name === "" || button_name === "All") {
-      setFilterItems(keywords);
+      setFilterItems(tweets);
       return;
     } 
     else {
-      const filteredData = keywords.filter((filterItem) => 
+      const filteredData = tweets.filter((filterItem) => 
         filterItem.university_name === button_name || 
         dateItems(filterItem) === button_name 
         );
@@ -91,6 +91,11 @@ const WordCloud = () => {
 
   };
 
+  const wordCloudKeywords = keywords;
+  const wordCloudTweets = filterItems;
+
+  // console.log(wordCloudKeywords);
+  // console.log(wordCloudTweets);
 
   return (
     <div className="w_grid">
@@ -103,15 +108,15 @@ const WordCloud = () => {
         <h1>Word Cloud for Keywords</h1>
       </div>
 
-      <div className="w_filter">
-        <Button variant="contained">
-          Clear Filter
-        </Button>
-      </div>
-
       <div className="w_content">
 
         <div className="w_content_filter">
+
+          <div className="w_content_filter_clear">
+            <Button variant="contained">
+              Clear Filter
+            </Button>
+          </div>
            
           {Object.keys((filterParam)).map(category => 
             <div key={category}>
@@ -138,8 +143,15 @@ const WordCloud = () => {
         </div>
 
         <div className="w_content_wordcloud">
-          <TagCloud />
+          <div>
+            <TagCloud />
+          </div>
+          
+          <div>
+            <KeywordCloud keywords={wordCloudKeywords} tweets={wordCloudTweets} />
+          </div>
         </div>
+
       </div>
 
       <div className="w_footer">
