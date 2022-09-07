@@ -15,3 +15,6 @@ export { default as EditKeywordModal } from './modal/EditKeywordModal';
 export { default as BasicModal } from './modal/BasicModal';
 export { default as UniversityModal } from './modal/UniversityModal';
 export { default as TagCloud } from './tagcloud/TagCloud';
+export { default as KeywordCloud } from './tagcloud/TagCloud';
+export { default as KeywordHits } from './charts/KeywordHits';
+export { default as KeywordByUniversity} from './charts/KeywordByUniversity';

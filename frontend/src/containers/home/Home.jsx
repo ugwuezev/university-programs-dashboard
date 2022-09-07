@@ -26,9 +26,9 @@ import { CommonButton } from '../../components';
 //import { Link } from 'react-router-dom';
 
 // for tweet details
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import RepeatIcon from "@mui/icons-material/Repeat";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+// import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+// import RepeatIcon from "@mui/icons-material/Repeat";
+// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
 
 import moment from 'moment';
@@ -165,11 +165,10 @@ const Home = () => {
   };
 
 
-  // toggle button
-  /* const [expand, setExpand] = useState(false);
-  const toggleAcordion = () => {
-    setExpand((prev) => !prev);
-  }; */
+  // const onError = () => {
+  //   img.src = tweet.twitter_avi_link;
+  // };
+
 
   return (
     <div className="h_grid">
@@ -288,29 +287,25 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-
+                
+                <div>
                 <img 
-                  src="https://www.simplilearn.com/ice9/free_resources_article_thumb/IBM_Leading_in_AI_Innovations_What_the_Company_is_Working_on_Now.jpg" 
-                  alt="" 
-                  width="150" 
-                  height="100"
+                  src={tweet.tweet_image}
+                  //onError="this.style.display='none'"
+                  onError={(e) => e.target.src = tweet.university_avi_link}
+                  alt=""
+                  style={{
+                    width: 250,
+                    height: 170,
+                  }}
                 />
+                </div>
+              
                 
                 <div className="h_content_tweet_footer">
+                  
                   <span>
-                    <ChatBubbleOutlineIcon fontSize="small" />
-                    200
-                  </span>
-                  <span>
-                    <RepeatIcon fontSize="small" />
-                    500
-                  </span>
-                  <span>
-                    <FavoriteBorderIcon fontSize="small" />
-                    2450
-                  </span>
-                  <span>
-                    <a href="https://twitter.com" target="_blank" rel="noreferrer">
+                    <a href={tweet.tweet_url} target="_blank" rel="noreferrer">
                       <PublishIcon fontSize="small" />
                     </a>
                   </span>
