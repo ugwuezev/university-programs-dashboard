@@ -63,6 +63,7 @@ const EditKeywordModal = ({ open, onClose, updateKeywordDetails, defaultText }) 
                 placeholder="Keyword"
                 name="name"
                 label="Keyword"
+                variant="filled"
                 required
                 {...register('name')}
                 error={errors.name ? true : false}

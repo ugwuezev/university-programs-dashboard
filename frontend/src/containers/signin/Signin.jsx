@@ -16,7 +16,13 @@ const Signin = () => {
     email: "",
     password: "",
     showPass: false,
-});
+  });
+
+  const [values, setValues] = useState({
+    email: "",
+    pass: "",
+    showPass: false,
+  });
 
   const { email, password } = formData
       
@@ -99,9 +105,9 @@ const Signin = () => {
                   name="email"
                   value={email}
                   placeholder="Email"
-                  variant="outlined"
+                  variant="filled"
                   required
-                  onChange={onChange}
+                  onChange={(e) => setValues({ ...values, email: e.target.value })}                
                 />
               </Grid>
 
@@ -114,7 +120,7 @@ const Signin = () => {
                 name="password"
                 value={password}
                 placeholder="Password"
-                variant="outlined"
+                variant="filled"
                 required
                 onChange={onChange}
                 InputProps={{
@@ -130,6 +136,7 @@ const Signin = () => {
                     </InputAdornment>
                   ),
                 }}
+        
               />
               </Grid>
 

@@ -62,6 +62,7 @@ const AddKeywordModal = ({ open, onClose, addNewKeyword }) => {
                 placeholder="Keyword"
                 name="name"
                 label="Keyword"
+                variant="filled"
                 required
                 {...register('name')}
                 error={errors.name ? true : false}
