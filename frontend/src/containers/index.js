@@ -7,5 +7,3 @@ export { default as Keywords} from './keywords/Keywords';
 export { default as Signin } from './signin/Signin';
 export { default as Register } from './register/Register';
 export { default as Error } from './error/Error';
-export { default as Test } from './test/Test';
-export { default as Test2 } from './test/Test2';

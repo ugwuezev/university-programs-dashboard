@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import './register.css';
 import { Header, Footer, Spinner } from '../../components';
 import { register, reset } from '../../features/auth/authSlice'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const Register = () => {
 
@@ -59,9 +59,11 @@ const Register = () => {
             email,
             password,
           }
+          console.log(userData)
     
           dispatch(register(userData))
         }
+       
       }
     
     if (isLoading) {
@@ -104,8 +106,8 @@ const Register = () => {
                     id="name"
                     name="name"
                     value={name}
-                    placeholder="Enter your full name"
-                    variant="outlined"
+                    placeholder="Enter full name"
+                    variant="filled"
                     required
                     onChange={onChange}
                   />
@@ -119,8 +121,8 @@ const Register = () => {
                     id="email"
                     name="email"
                     value={email}
-                    placeholder="Enter your email"
-                    variant="outlined"
+                    placeholder="Enter email"
+                    variant="filled"
                     required
                     onChange={onChange}
                   />
@@ -134,8 +136,8 @@ const Register = () => {
                     id="password"
                     name="password"
                     value={password}
-                    placeholder="Enter your desired password"
-                    variant="outlined"
+                    placeholder="Enter password"
+                    variant="filled"
                     required
                     onChange={onChange}
                     InputProps={{
@@ -163,7 +165,7 @@ const Register = () => {
                     name="password2"
                     value={password2}
                     placeholder="Confirm password"
-                    variant="outlined"
+                    variant="filled"
                     required
                     onChange={onChange}
                     InputProps={{
@@ -187,14 +189,14 @@ const Register = () => {
 
                   {/* To Do: backend authentication before sign in */}
 
-                    <Link to={'/signin'}>
+                    {/* <Link to={'/signin'}> */}
                       <Button
                         type="submit" 
-                        variant="contained" 
+                        variant="contained"
                       >
                         Register
                       </Button>
-                    </Link>
+                    {/* </Link> */}
                   </Box>
                 </Grid>
               </Grid>

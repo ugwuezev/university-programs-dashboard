@@ -8,19 +8,13 @@ import { toast } from 'react-toastify';
 import './signin.css';
 import { Header, Footer, Spinner } from '../../components';
 import { login, reset } from '../../features/auth/authSlice'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const Signin = () => {
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    showPass: false,
-  });
-
-  const [values, setValues] = useState({
-    email: "",
-    pass: "",
     showPass: false,
   });
 
@@ -107,7 +101,8 @@ const Signin = () => {
                   placeholder="Email"
                   variant="filled"
                   required
-                  onChange={(e) => setValues({ ...values, email: e.target.value })}                
+                  onChange={onChange}
+                  
                 />
               </Grid>
 
@@ -145,14 +140,14 @@ const Signin = () => {
 
                  {/* To Do: backend authentication before sign in */}
 
-                  <Link to={'/'}>
+                  {/* <Link to={'/'}> */}
                     <Button
                       type="submit" 
                       variant="contained" 
                     >
                       Sign In
                     </Button>
-                  </Link>
+                  {/* </Link> */}
                 </Box>
               </Grid>
             </Grid>
