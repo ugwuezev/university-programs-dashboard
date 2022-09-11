@@ -1,7 +1,7 @@
+
 const express = require('express');
 const router = express.Router();
-
-const { loginUser, registerUser, getMe } = require('../controllers/userController');
+const { registerUser, loginUser, getMe, getUsers } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware')
 const { getTweets} = require('../controllers/tweetController');
 const { addUniversity, getUniversities, getUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
@@ -16,12 +16,13 @@ router.get('/test', (req, res) => {
     res.status(200).json({ message: "Testing the routes" });
     });
 
-router.get('/register', registerUser);
-
+// user routes
+router.post('/register', registerUser);
 router.post('/login', loginUser);
+router.get('/users/me', protect, getMe)
+router.get('/users', getUsers)
 
-router.get('/me', protect, getMe)
-
+// tweet route
 router.get('/tweets', getTweets);
 
 // university routes
