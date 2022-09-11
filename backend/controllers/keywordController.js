@@ -39,7 +39,7 @@ const addKeyword = asyncHandler(async (req, res) => {
 
 
 // query to update keyword details
-const updateKeyword= asyncHandler(async (req, res) => {
+const updateKeyword = asyncHandler(async (req, res) => {
     //console.log(req.params._id);
     console.log(req.body);
     

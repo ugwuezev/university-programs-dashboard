@@ -6,10 +6,7 @@ const { protect } = require('../middleware/authMiddleware')
 const { getTweets} = require('../controllers/tweetController');
 const { addUniversity, getUniversities, getUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
 const { getKeywords, getKeyword, addKeyword, updateKeyword, deleteKeyword } = require('../controllers/keywordController');
-const { getTests } = require('../controllers/testController');
 
-// Tests
-router.get('/tests', getTests);
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "This is the default page" });

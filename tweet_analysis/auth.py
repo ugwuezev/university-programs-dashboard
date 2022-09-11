@@ -1,3 +1,4 @@
+
 # Twitter authentication module
 
 import tweepy
@@ -24,3 +25,5 @@ def TwitterAuthentication():
     api = tweepy.API(auth)
 
     return api
+
+

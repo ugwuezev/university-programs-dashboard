@@ -70,6 +70,7 @@ const EditUniversityModal = ({ open, onClose, updateUniversityDetails, defaultFu
                 placeholder="Full Name"
                 name="full_name"
                 label="Full Name"
+                variant="filled"
                 required
                 {...register('full_name')}
                 error={errors.full_name ? true : false}
@@ -81,6 +82,7 @@ const EditUniversityModal = ({ open, onClose, updateUniversityDetails, defaultFu
                 placeholder="Twitter Name"
                 name="twitter_name"
                 label="Twitter Name"
+                variant="filled"
                 required
                 {...register('twitter_name')}
                 error={errors.twitter_name ? true : false}
@@ -92,6 +94,7 @@ const EditUniversityModal = ({ open, onClose, updateUniversityDetails, defaultFu
                 placeholder="Twitter Handle"
                 name="twitter_handle"
                 label="Twitter Handle"
+                variant="filled"
                 required
                 {...register('twitter_handle')}
                 error={errors.twitter_handle ? true : false}
@@ -103,6 +106,7 @@ const EditUniversityModal = ({ open, onClose, updateUniversityDetails, defaultFu
                 placeholder="Twitter Avi Link"
                 name="twitter_avi_link"
                 label="Twitter Avi Link"
+                variant="filled"
                 required
                 {...register('twitter_avi_link')}
                 error={errors.twitter_avi_link ? true : false}

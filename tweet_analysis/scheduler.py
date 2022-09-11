@@ -1,14 +1,16 @@
 
-import testing_automation
+# Scheduler module - runs once every 7 days
+
+import main
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 cycle1 = [0,10,1]
 cycle2 = [10,21,1]
 cycle3 = [21,32,1]
 
-First_run = testing_automation.KeywordMatching(cycle1)
-Second_run = testing_automation.KeywordMatching(cycle2)
-Third_run = testing_automation.KeywordMatching(cycle3)
+First_run = main.KeywordMatching(cycle1)
+Second_run = main.KeywordMatching(cycle2)
+Third_run = main.KeywordMatching(cycle3)
 
 schedule = BlockingScheduler()
 

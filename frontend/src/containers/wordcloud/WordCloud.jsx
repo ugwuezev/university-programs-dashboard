@@ -143,9 +143,9 @@ const WordCloud = () => {
         </div>
 
         <div className="w_content_wordcloud">
-          <div>
+          {/* <div>
             <TagCloud />
-          </div>
+          </div> */}
           
           <div>
             <KeywordCloud keywords={wordCloudKeywords} tweets={wordCloudTweets} />
