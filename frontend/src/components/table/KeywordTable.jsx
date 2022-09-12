@@ -49,7 +49,7 @@ const KeywordTable = ({ setData, data }) => {
   // handling pagination
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [keywords, setKeywords] = useState(data);
   const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
 
