@@ -52,7 +52,7 @@ const UniversityTable = ({ setData, data }) => {
   // handling pagination
   const [initPage, setPage] = useState(0);
   const [searchResultPage, setSearchResultPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(35);
   const [universities, setUniversities] = useState(data);
   const [sorted, setSorted] = useState({ sorted: "id", reversed: false })
 
@@ -326,7 +326,7 @@ const UniversityTable = ({ setData, data }) => {
             </TableBody>
           </Table>
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[10, 20, 35, 100]}
             component="div"
             count={q ? filteredData.length : data.length}
             rowsPerPage={rowsPerPage}

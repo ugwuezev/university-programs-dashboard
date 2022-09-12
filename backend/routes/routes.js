@@ -7,19 +7,15 @@ const { getTweets} = require('../controllers/tweetController');
 const { addUniversity, getUniversities, getUniversity, updateUniversity, deleteUniversity } = require('../controllers/universityController');
 const { getKeywords, getKeyword, addKeyword, updateKeyword, deleteKeyword } = require('../controllers/keywordController');
 
-
-router.get('/', (req, res) => {
-    res.status(200).json({ message: "This is the default page" });
-    });
-
+// Test
 router.get('/test', (req, res) => {
     res.status(200).json({ message: "Testing the routes" });
     });
 
 // user routes
-router.post('/register', registerUser);
+router.post('/', registerUser);
 router.post('/login', loginUser);
-router.get('/users/me', protect, getMe)
+router.get('/me', protect, getMe)
 router.get('/users', getUsers)
 
 // tweet route
